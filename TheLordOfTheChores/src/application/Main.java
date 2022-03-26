@@ -1,19 +1,33 @@
 package application;
 	
+import java.io.File;
+import java.net.URL;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.fxml.FXMLLoader;
 
-
+/**
+ * @author Isaac Nguyen (rrg053)
+ * UTSA CS 3443 - Lab 4
+ * Spring 2022
+ */
+// Main class that extends Application which JavaFX application extends
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			//get url file 
+			URL url = new File("src/Main.fxml").toURI().toURL();
+			//load pane
+	    	AnchorPane root = FXMLLoader.load(url);
+	    	//create new scene
+			Scene scene = new Scene(root,800,800);
+			//set scene
 			primaryStage.setScene(scene);
+			//display scene
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -21,6 +35,7 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		//lauches application
 		launch(args);
 	}
 }
