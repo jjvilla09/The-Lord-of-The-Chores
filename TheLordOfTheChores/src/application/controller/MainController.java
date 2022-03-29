@@ -30,7 +30,7 @@ public class MainController {
     	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     	//set scene
     	window.setScene(scene);
-    	// QuestBoardBranch: set title
+    	// QuestBoardBranch: set title ladaadada
     	window.setTitle("The Lord of the Chores: Quest Board");
     	//display scene
     	window.show();
