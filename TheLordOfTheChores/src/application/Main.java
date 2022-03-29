@@ -27,6 +27,8 @@ public class Main extends Application {
 			Scene scene = new Scene(root,800,800);
 			//set scene
 			primaryStage.setScene(scene);
+			// QuestBoardBranch: set title
+			primaryStage.setTitle("The Lord of the Chores: Hub Area");
 			//display scene
 			primaryStage.show();
 		} catch(Exception e) {
