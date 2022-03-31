@@ -20,15 +20,15 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			//get url file 
-			URL url = new File("src/Main.fxml").toURI().toURL();
+			URL url = new File("src/Login.fxml").toURI().toURL();
 			//load pane
 	    	AnchorPane root = FXMLLoader.load(url);
 	    	//create new scene
-			Scene scene = new Scene(root,800,800);
+			Scene scene = new Scene(root,600,400);
 			//set scene
 			primaryStage.setScene(scene);
 			// QuestBoardBranch: set title
-			primaryStage.setTitle("The Lord of the Chores - Homepage");
+			primaryStage.setTitle("The Lord of the Chores - Login");
 			//display scene
 			primaryStage.show();
 		} catch(Exception e) {
