@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoginController">
+   <children>
+      <Label layoutX="141.0" layoutY="155.0" prefHeight="37.0" prefWidth="111.0" text="Username">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="141.0" layoutY="198.0" prefHeight="30.0" prefWidth="96.0" text="Password">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="username" layoutX="248.0" layoutY="161.0" promptText="UserName" />
+      <PasswordField fx:id="password" layoutX="248.0" layoutY="201.0" promptText="Password" />
+      <Button layoutX="248.0" layoutY="248.0" mnemonicParsing="false" onAction="#loginHandle" prefHeight="31.0" prefWidth="69.0" text="LOGIN">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Label fx:id="incorrectLogin" layoutX="226.0" layoutY="138.0" prefHeight="17.0" prefWidth="89.0" textFill="RED" />
+      <Button layoutX="328.0" layoutY="248.0" mnemonicParsing="false" onAction="#signUpHandle" prefHeight="31.0" prefWidth="69.0" text="Sign Up">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label layoutX="248.0" layoutY="101.0" prefHeight="37.0" prefWidth="89.0" text="Login">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
