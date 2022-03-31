@@ -11,9 +11,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+/**
+ * @author Joshua Villarreal (uut835)
+ *
+ */
 
 public class ShopController implements Initializable {
 	
@@ -40,6 +47,8 @@ public class ShopController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		GridPane gp = new GridPane();
+		gp.add(new Button(), 0, 0);
+		
 	}
 
 }
