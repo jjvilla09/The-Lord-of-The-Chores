@@ -4,18 +4,15 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import application.model.Shop;
 
 /**
  * @author Joshua Villarreal (uut835)
@@ -23,18 +20,22 @@ import javafx.stage.Stage;
  */
 
 public class ShopController implements Initializable {
+	private Shop shopModel = new Shop();
 	
 	@FXML
     private AnchorPane shopPane;	//pane
 	
+	@FXML
+    private AnchorPane mainPane;	//pane
+	
     @FXML
-    void homeHandle(ActionEvent event) throws IOException {
+    void homeHandle(MouseEvent event) throws IOException {
     	//get url file
     	URL url = new File("src/Main.fxml").toURI().toURL();
     	//load pane
-    	shopPane = FXMLLoader.load(url);
+    	mainPane = FXMLLoader.load(url);
     	//create new scene
-    	Scene scene = new Scene(shopPane, 800, 800);
+    	Scene scene = new Scene(mainPane, 800, 800);
     	//set stage
     	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     	//set scene
@@ -45,11 +46,12 @@ public class ShopController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		GridPane gp = new GridPane();
-		gp.add(new Button(), 0, 0);
+		shopPane.setStyle("-fx-background-color:#966027;");
+		
+		shopModel.readItemsFromFile();
+		
+		
 		
 	}
-
 }
 
