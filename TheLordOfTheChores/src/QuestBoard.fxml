@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.control.*?>
@@ -7,12 +9,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="questBoardPane" prefHeight="444.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.QuestBoardController">
+<AnchorPane fx:id="questBoardPane" prefHeight="619.0" prefWidth="801.0" style="-fx-background-color: #b5651d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.QuestBoardController">
    <children>
-      <Circle fill="#03a12d" layoutX="400.0" layoutY="222.0" radius="45.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button layoutX="367.0" layoutY="201.0" mnemonicParsing="false" onAction="#homeHandle" style="-fx-background-color: #03a12d;" text="Home">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="619.0" stroke="#57310f" strokeType="INSIDE" strokeWidth="5.0" style="-fx-fill: transparent;" width="801.0" />
+      <ImageView fitHeight="103.0" fitWidth="369.0" layoutX="216.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../data/QuestBoardSign.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="toHomeImage" fitHeight="40.0" fitWidth="41.0" layoutX="756.0" onMouseClicked="#toHomeHandle" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../data/homeButton.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="createNewQuestButton" alignment="CENTER" layoutX="330.0" layoutY="134.0" mnemonicParsing="false" onAction="#createNewQuest" style="-fx-background-color: Brown;" text="Create New Quest">
          <font>
-            <Font name="Dubai Light" size="17.0" />
-         </font></Button>
+            <Font name="Lucida Sans Unicode" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -23,11 +23,10 @@ public class MainController {
     	//load pane
     	mainPane = FXMLLoader.load(url);
     	//create new scene
-    	Scene scene = new Scene(mainPane, 800, 800);
+    	Scene scene = new Scene(mainPane);
     	//set stage
     	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     	//set scene
-    	window.setScene(scene);
     	window.setScene(scene);
     	// QuestBoardBranch: set title
     	window.setTitle("The Lord of the Chores - Quest Board");
