@@ -4,8 +4,6 @@
  */
 package application.model;
 
-import java.util.*;
-
 public class Quest {
 	private String qName; // -qName: String
 	private String qDiff; // qDiff: String
