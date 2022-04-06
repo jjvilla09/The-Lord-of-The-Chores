@@ -30,7 +30,7 @@ public class Login {
 	}
 	public void loadLogins() throws IOException {
 		//get file
-		File file = new File("data/users.csv");
+		File file = new File("data/users.txt");
 		//create buffer reader to read file
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		//read first line of file

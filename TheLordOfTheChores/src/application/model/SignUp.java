@@ -30,7 +30,7 @@ public class SignUp {
 	public void storePassword() throws IOException {
 		//store.put(this.username,this.password);
 		String acc = this.username + "," + this.password + "\n";
-		File file = new File("data/users.csv");
+		File file = new File("data/users.txt");
 		FileWriter wFile = new FileWriter(file,true);
 		System.out.println(acc);
 		wFile.write(acc);
