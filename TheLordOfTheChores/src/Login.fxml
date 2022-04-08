@@ -20,11 +20,11 @@
       </Label>
       <TextField fx:id="username" layoutX="248.0" layoutY="161.0" promptText="UserName" />
       <PasswordField fx:id="password" layoutX="248.0" layoutY="201.0" promptText="Password" />
-      <Button layoutX="248.0" layoutY="248.0" mnemonicParsing="false" onAction="#loginHandle" prefHeight="31.0" prefWidth="69.0" text="LOGIN">
+      <Button layoutX="248.0" layoutY="248.0" mnemonicParsing="false" onAction="#loginHandle" prefHeight="31.0" prefWidth="69.0" text="Login">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Label fx:id="incorrectLogin" layoutX="226.0" layoutY="138.0" prefHeight="17.0" prefWidth="89.0" textFill="RED" />
+      <Label fx:id="incorrectLogin" layoutX="248.0" layoutY="138.0" prefHeight="17.0" prefWidth="149.0" textFill="RED" />
       <Button layoutX="328.0" layoutY="248.0" mnemonicParsing="false" onAction="#signUpHandle" prefHeight="31.0" prefWidth="69.0" text="Sign Up">
          <font>
             <Font name="System Bold" size="12.0" />
