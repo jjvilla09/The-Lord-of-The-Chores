@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane fx:id="shopPane" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ShopController">
+<AnchorPane fx:id="shopPane" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #964f29;" stylesheets="@application/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ShopController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#794322" height="66.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#75391a" height="66.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" />
       <ImageView fitHeight="174.0" fitWidth="526.0" layoutX="137.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../data/ShopSign.png" />
