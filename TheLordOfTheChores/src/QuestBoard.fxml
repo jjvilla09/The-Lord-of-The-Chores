@@ -22,10 +22,15 @@
             <Image url="@../data/homeButton.png" />
          </image>
       </ImageView>
-      <Button fx:id="createNewQuestButton" alignment="CENTER" layoutX="330.0" layoutY="134.0" mnemonicParsing="false" onAction="#createNewQuest" style="-fx-background-color: Brown;" text="Create New Quest">
+      <Button fx:id="createNewQuestButton" alignment="CENTER" layoutX="636.0" layoutY="570.0" mnemonicParsing="false" onAction="#createNewQuest" style="-fx-background-color: Brown;" text="Create New Quest">
          <font>
             <Font name="Lucida Sans Unicode" size="15.0" />
          </font>
       </Button>
+      <ImageView fx:id="toHelpImage" fitHeight="52.0" fitWidth="40.0" layoutX="7.0" layoutY="3.0" onMouseClicked="#handleHelp" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../data/Question-Mark-clipart-transparent.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
