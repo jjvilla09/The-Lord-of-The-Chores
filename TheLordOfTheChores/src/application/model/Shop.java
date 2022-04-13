@@ -17,6 +17,12 @@ public class Shop {
 	private ArrayList<Item> Items = new ArrayList<>();
 	private ArrayList<Item> ItemsInStock = new ArrayList<>();
 	
+	/**
+	 * Reads a file of items in the format name, description, rarity, and item type
+	 * and puts them in an ArrayList of items
+	 * 
+	 * Note to self: must find a way to store these as persistent objects.
+	 */
 	public void readItemsFromFile() {
 		File itemsFile = new File(ITEMS_FILE_NAME);
 		String itemsFilePath = itemsFile.getAbsolutePath();
@@ -49,6 +55,12 @@ public class Shop {
 		}
 	}
 	
+	/**
+	 * Returns an itemType enum based on the String s parameter.
+	 * 
+	 * @param s
+	 * @return
+	 */
 	private ItemType findItemType(String s) {
 		switch(s.toLowerCase()) {
 		case "chestpiece":
@@ -66,6 +78,12 @@ public class Shop {
 		return null;
 	}
 	
+	/**
+	 * Returns a Rarity enum based on the String s parameter 
+	 * 
+	 * @param s
+	 * @return
+	 */
 	private Rarity findItemRarity(String s) {
 		switch(s.toLowerCase()) {
 		case "common":
@@ -79,6 +97,22 @@ public class Shop {
 		}
 		
 		return null;
+	}
+	
+	/**
+	 * If user has enough money, then the item is added to inventory
+	 * 
+	 * Otherwise, print error message
+	 */
+	public void validateAndBuyItem() {
+		
+	}
+	
+	/**
+	 * Adds item to inventory
+	 */
+	public void addToInventory() {
+		
 	}
 	
 	public void randomizeVendorItems() {

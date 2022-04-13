@@ -20,6 +20,7 @@ import application.model.Shop;
  */
 
 public class ShopController implements Initializable {
+	
 	private Shop shopModel = new Shop();
 	
 	@FXML
@@ -30,28 +31,23 @@ public class ShopController implements Initializable {
 	
     @FXML
     void homeHandle(MouseEvent event) throws IOException {
-    	//get url file
     	URL url = new File("src/Main.fxml").toURI().toURL();
-    	//load pane
     	mainPane = FXMLLoader.load(url);
-    	//create new scene
     	Scene scene = new Scene(mainPane, 800, 800);
-    	//set stage
     	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	//set scene
+    	window.setTitle("The Lord of the Chores - Login");
     	window.setScene(scene);
-    	//display scene
     	window.show();
     }
-
+    
+    @FXML
+    void buyHandle(MouseEvent event) {
+    	shopModel.validateAndBuyItem();
+    }
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		shopPane.setStyle("-fx-background-color:#966027;");
-		
 		shopModel.readItemsFromFile();
-		
-		
-		
 	}
 }
 

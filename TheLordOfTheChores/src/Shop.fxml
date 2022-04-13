@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,10 +11,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 
-
 <AnchorPane fx:id="shopPane" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ShopController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff8f49" height="66.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#794322" height="66.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" />
       <ImageView fitHeight="174.0" fitWidth="526.0" layoutX="137.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../data/ShopSign.png" />
@@ -33,34 +33,79 @@
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="23.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="34.0" fitWidth="37.0" layoutX="33.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="77.0" layoutY="178.0" text="Price:" />
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="23.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="23.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../data/CommonHelmet.png" />
+                     </image></ImageView>
+                  <Label layoutX="77.0" layoutY="178.0" text="Price: 100" />
+                  <Button layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onMouseClicked="#buyHandle" text="Buy" />
                </children>
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="23.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="34.0" fitWidth="37.0" layoutX="33.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="77.0" layoutY="178.0" text="Price:" />
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="23.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="23.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../data/CommonChestpiece%20v2.png" />
+                     </image></ImageView>
+                  <Label layoutX="77.0" layoutY="178.0" text="Price: 100" />
+                  <Button layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onMouseClicked="#buyHandle" text="Buy" />
                </children>
             </Pane>
             <Pane layoutX="256.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="23.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="34.0" fitWidth="37.0" layoutX="33.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="77.0" layoutY="178.0" text="Price:" />
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="23.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="23.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../data/CommonLeggings%20v2.png" />
+                     </image></ImageView>
+                  <Label layoutX="77.0" layoutY="178.0" text="Price: 100" />
+                  <Button layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onMouseClicked="#buyHandle" text="Buy" />
                </children>
             </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
-            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="28.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../data/CommonBoots%20v2.png" />
+                     </image></ImageView>
+                  <Label layoutX="82.0" layoutY="178.0" text="Price: 100" />
+                  <Button layoutX="19.0" layoutY="174.0" mnemonicParsing="false" onMouseClicked="#buyHandle" text="Buy" />
+               </children></Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="48.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../data/RareHelmet.png" />
+                     </image></ImageView>
+                  <Label layoutX="82.0" layoutY="178.0" text="Price: 1000" />
+                  <Button layoutX="19.0" layoutY="174.0" mnemonicParsing="false" onMouseClicked="#buyHandle" text="Buy" />
+               </children></Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="32.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../data/CommonChestArmor.png" />
+                     </image></ImageView>
+                  <Label layoutX="86.0" layoutY="182.0" text="Price: 100" />
+                  <Button layoutX="23.0" layoutY="178.0" mnemonicParsing="false" onMouseClicked="#buyHandle" text="Buy" />
+               </children></Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="28.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="82.0" layoutY="178.0" text="Price:" />
+                  <Button layoutX="19.0" layoutY="174.0" mnemonicParsing="false" text="Buy" />
+               </children></Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="28.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="82.0" layoutY="178.0" text="Price:" />
+                  <Button layoutX="19.0" layoutY="174.0" mnemonicParsing="false" text="Buy" />
+               </children></Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="76.0" layoutY="171.0" text="Price:" />
+                  <Button layoutX="13.0" layoutY="167.0" mnemonicParsing="false" text="Buy" />
+               </children></Pane>
          </children>
       </GridPane>
       <ImageView fitHeight="56.0" fitWidth="44.0" layoutX="742.0" layoutY="11.0" onMouseClicked="#homeHandle" pickOnBounds="true" preserveRatio="true">
