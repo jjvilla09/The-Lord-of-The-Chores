@@ -12,13 +12,18 @@ import javafx.scene.control.Label;
 
 public class SignUp {
 	private HashMap<String, String> userPassHashMap = new HashMap<String,String>();
+	private HashMap<String, String> currentUser = new HashMap<String, String>();
 	private static HashMap<String, String> inventory = new HashMap<String, String>();
 	private static Properties properties = new Properties();
+	private static Properties properties2 = new Properties();
+	
 	// -------------- FILE STUFF -------------- //
-	private static final String USER_PASSWORD_FILE_NAME = "userPass.properties";
+	private static final String USER_PASSWORD_FILE_NAME = "userPassword.properties";
 	private static final String INVENTORY_FILE_NAME = "inventory.properties";
+	private static final String USER_CURRENCY_FILE_NAME = "userCurrency.properties";
 	private static final File USER_PASSWORD_FILE_OBJECT = new File(USER_PASSWORD_FILE_NAME);
 	private static final File INVENTORY_FILE_OBJECT = new File(INVENTORY_FILE_NAME);
+	private static final File USER_CURRENCY_FILE_OBJECT = new File(USER_CURRENCY_FILE_NAME);
 	private static final String STARTER_KIT = "NONE,StarterChestpiece,NONE,StarterLeggings,NONE";
 	
 	
@@ -38,8 +43,8 @@ public class SignUp {
 			return false;
 		}
 		
-		try {
-			properties.load(new FileInputStream(USER_PASSWORD_FILE_OBJECT));
+		try(FileInputStream inFile = new FileInputStream(USER_PASSWORD_FILE_OBJECT)) {
+			properties.load(inFile);
 		}
 		catch(FileNotFoundException e) {
 			System.out.println("File does not exist");
@@ -72,15 +77,27 @@ public class SignUp {
 		}
 		
 		initializeStarterGear(username);
+		initializeCurrency(username);
 		
 		return true;
 	}
 	
+	private void initializeCurrency(String username) throws IOException {
+		try(FileOutputStream outFile = new FileOutputStream(USER_CURRENCY_FILE_OBJECT, true)) {
+			currentUser.put(username, "0"); // Initialize currency to zero
+			properties2.putAll(currentUser); // Put in hashmap
+			properties2.store(outFile, null); // store in properties file
+			outFile.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static void initializeStarterGear(String username) throws IOException{
 		try(FileOutputStream outFile = new FileOutputStream(INVENTORY_FILE_OBJECT, true)) {
-			inventory.put(username, STARTER_KIT);
-			properties.putAll(inventory);
-			properties.store(outFile, null);
+			inventory.put(username, STARTER_KIT); // Initialize start kit
+			properties.putAll(inventory); // Put in hasmap
+			properties.store(outFile, null); // store in properties file
 			outFile.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

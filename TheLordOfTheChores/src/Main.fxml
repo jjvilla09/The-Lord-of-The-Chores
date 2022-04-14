@@ -4,6 +4,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="mainPane" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
    <children>
@@ -15,5 +17,7 @@
       <Button layoutX="93.0" layoutY="428.0" mnemonicParsing="false" onAction="#questBoardHandle" text="QuestBoard" />
       <Button layoutX="671.0" layoutY="658.0" mnemonicParsing="false" onAction="#inventoryHandle" text="Inventory" />
       <Button layoutX="364.0" layoutY="474.0" mnemonicParsing="false" onAction="#shopHandle" text="Shop" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#543d0c" height="79.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+      <Text fx:id="currentUserTextBox" layoutX="61.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" />
    </children>
 </AnchorPane>
