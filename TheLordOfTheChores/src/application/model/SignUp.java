@@ -12,10 +12,10 @@ import javafx.scene.control.Label;
 
 public class SignUp {
 	private HashMap<String, String> userPassHashMap = new HashMap<String,String>();
-	private HashMap<String, String> currentUser = new HashMap<String, String>();
-	private static HashMap<String, String> inventory = new HashMap<String, String>();
+	//private HashMap<String, String> currentUser = new HashMap<String, String>();
+	//private static HashMap<String, String> inventory = new HashMap<String, String>();
 	private static Properties properties = new Properties();
-	private static Properties properties2 = new Properties();
+	//private static Properties properties2 = new Properties();
 	
 	// -------------- FILE STUFF -------------- //
 	private static final String USER_PASSWORD_FILE_NAME = "userPassword.properties";
@@ -45,16 +45,17 @@ public class SignUp {
 		
 		try(FileInputStream inFile = new FileInputStream(USER_PASSWORD_FILE_OBJECT)) {
 			properties.load(inFile);
+			
+			// Put objects from properties file into a locally created HashMap
+			for(String keys : properties.stringPropertyNames()) {
+				userPassHashMap.put(keys, properties.get(keys).toString());
+			}
 		}
 		catch(FileNotFoundException e) {
-			System.out.println("File does not exist");
+			System.out.println(USER_PASSWORD_FILE_NAME + ": file does not exist");
 		}
 		
-		// Put objects from properties file into a locally created HashMap
-		for(String keys : properties.stringPropertyNames()) {
-			userPassHashMap.put(keys, properties.get(keys).toString());
-		}
-		
+		// Validate Credentials
 		if(userPassHashMap.containsKey(username)) {
 			invalidTextBox.setText("Username already exists");
 			return false;
@@ -66,27 +67,38 @@ public class SignUp {
 		
 		// All checks out
 		// Store the username and password into the userPass.properties file. return true.
-		userPassHashMap.put(username, password);
-		properties.putAll(userPassHashMap);
-		
-		try(FileOutputStream outFile = new FileOutputStream(USER_PASSWORD_FILE_OBJECT, true)) {
-			properties.store(outFile, null);
-			outFile.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
+		initializeCredentials(username, password);
 		initializeStarterGear(username);
 		initializeCurrency(username);
 		
 		return true;
 	}
 	
+	private void initializeCredentials(String username, String password) throws IOException {
+		try(FileOutputStream outFile = new FileOutputStream(USER_PASSWORD_FILE_OBJECT, false)) {
+			userPassHashMap.put(username, password);
+			properties.putAll(userPassHashMap);
+			properties.store(outFile, null);
+			outFile.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private void initializeCurrency(String username) throws IOException {
-		try(FileOutputStream outFile = new FileOutputStream(USER_CURRENCY_FILE_OBJECT, true)) {
-			currentUser.put(username, "0"); // Initialize currency to zero
-			properties2.putAll(currentUser); // Put in hashmap
-			properties2.store(outFile, null); // store in properties file
+		properties.clear(); // Starts from scratch
+		
+		try(FileInputStream inFile = new FileInputStream(USER_CURRENCY_FILE_OBJECT)) {
+			properties.load(inFile); // Load file data
+		}
+		catch(FileNotFoundException e) {
+			System.out.println(USER_CURRENCY_FILE_NAME + ": file does not exist");
+		}
+		
+		properties.put(username, "0"); // put username into hashmap and initialize it to 0
+		
+		try(FileOutputStream outFile = new FileOutputStream(USER_CURRENCY_FILE_OBJECT, false)) {
+			properties.store(outFile, null); // Store the hashmap into the userCurrency.properties file
 			outFile.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -94,14 +106,22 @@ public class SignUp {
 	}
 
 	public static void initializeStarterGear(String username) throws IOException{
-		try(FileOutputStream outFile = new FileOutputStream(INVENTORY_FILE_OBJECT, true)) {
-			inventory.put(username, STARTER_KIT); // Initialize start kit
-			properties.putAll(inventory); // Put in hasmap
-			properties.store(outFile, null); // store in properties file
+		properties.clear(); // Starts from scratch
+		
+		try(FileInputStream inFile = new FileInputStream(INVENTORY_FILE_OBJECT)) {
+			properties.load(inFile); // Load file data	
+		}
+		catch(FileNotFoundException e) {
+			System.out.println(INVENTORY_FILE_NAME + ": File does not exist");
+		}
+		
+		properties.put(username, STARTER_KIT); // Store armor into hashmap
+		
+		try(FileOutputStream outFile = new FileOutputStream(INVENTORY_FILE_OBJECT, false)) {
+			properties.store(outFile, null); // Store in properties file
 			outFile.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
-	
 }
