@@ -15,7 +15,7 @@ public class Login {
 	private HashMap<String, String> userPassHashMap = new HashMap<>();
 	private static HashMap<String,String> currUser = new HashMap<>();
 	private static Properties properties = new Properties();
-	private static Properties properties2 = new Properties();
+	//private static Properties properties2 = new Properties();
 	//public ArrayList<Login> login =new ArrayList<Login>();
 	
 	// -------------- FILE STUFF -------------- //
@@ -40,20 +40,22 @@ public class Login {
 		
 		try(FileInputStream inFile = new FileInputStream(USER_PASSWORD_FILE_OBJECT)) {
 			properties.load(inFile);
+			
+			// Put objects from properties file into a locally created HashMap
+			for(String keys : properties.stringPropertyNames()) {
+				userPassHashMap.put(keys, properties.get(keys).toString());
+			}
+			
 			inFile.close();
 		}
 		catch(FileNotFoundException e) {
-			System.out.println("File does not exist");
+			System.out.println(USER_PASSWORD_FILE_NAME + ": file does not exist");
 		}
 		
-		// Put objects from properties file into a locally created HashMap
-		for(String keys : properties.stringPropertyNames()) {
-			userPassHashMap.put(keys, properties.get(keys).toString());
-		}
-		
+		// Check that the username and password are correct
 		if(userPassHashMap.containsKey(username)) {
 			if(userPassHashMap.get(username).equals(password)) {
-				initializeCurrentUser(username);
+				initializeCurrentUser(username); // Place the user in the currentUser.properties file
 				return true;
 			} else {
 				incorrectLogin.setText("Incorrect passowrd");
@@ -65,13 +67,21 @@ public class Login {
 		return false;
 	}
 	
+	/**
+	 * Place the username into the currentUser.properties file.
+	 * 
+	 * @param username
+	 * @throws IOException
+	 */
 	public static void initializeCurrentUser(String username) throws IOException {
+		properties.clear(); // properties HashMap still contains the mappings from userPassword.properties (on Line 42), so we must clear it. 
 		try(FileOutputStream outFile = new FileOutputStream(CURRENT_USER_FILE_OBJECT, false)) {
 			currUser.put(username, username);
-			properties2.putAll(currUser);
-			properties2.store(outFile, null);
+			properties.putAll(currUser);
+			properties.store(outFile, null);
 			outFile.close();
 		} catch (FileNotFoundException e) {
+			System.out.println(CURRENT_USER_FILE_NAME + ": file not found");
 			e.printStackTrace();
 		}
 	}
