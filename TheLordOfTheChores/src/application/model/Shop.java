@@ -1,13 +1,13 @@
 package application.model;
 
-import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Properties;
+
+import javafx.scene.control.Alert;
 
 /**
  * @author Joshua Villarreal (uut835)
@@ -15,109 +15,195 @@ import java.util.Properties;
  */
 
 public class Shop {
-	private final static String ITEMS_FILE_NAME = "data/Items.csv";
-	private final static String INVENTORY_FILE_NAME = "data/inventory.txt";
+	private static final String CURRENT_USER_FILE_NAME = "currentUser.properties";
+	private static final File CURRENT_USER_FILE_OBJECT = new File(CURRENT_USER_FILE_NAME);
+	private final static String INVENTORY_FILE_NAME = "inventory.properties";
 	private final static File INVENTORY_FILE_OBJECT = new File(INVENTORY_FILE_NAME);
-	private HashMap<String, String> inventory = new HashMap<>();
+	private static final String USER_CURRENCY_FILE_NAME = "userCurrency.properties";
+	private static final File USER_CURRENCY_FILE_OBJECT = new File(USER_CURRENCY_FILE_NAME);
+	Alert a = new Alert(Alert.AlertType.WARNING);
+	
 	private Properties properties = new Properties();
-	private ArrayList<Item> Items = new ArrayList<>();
-	private ArrayList<Item> ItemsInStock = new ArrayList<>();
+	
 	
 	/**
-	 * Reads a file of items in the format name, description, rarity, and item type
-	 * and puts them in an ArrayList of items
+	 * Returns a string of the username currently playing.
 	 * 
-	 * Note to self: must find a way to store these as persistent objects.
-	 */
-	public void readItemsFromFile() {
-		File itemsFile = new File(ITEMS_FILE_NAME);
-		String itemsFilePath = itemsFile.getAbsolutePath();
-		BufferedReader br = null;
-		
-		try {
-			
-			br = new BufferedReader(new FileReader(itemsFilePath));
-			br.readLine();
-			String line = br.readLine(); 
-			
-			while(line != null) {
-				String[] attributes = line.split(",");
-				Item item = new Item(attributes[0], attributes[1], findItemRarity(attributes[2]), findItemType(attributes[3]));
-				Items.add(item);
-			}
-			
-		} catch (FileNotFoundException e) {
-			System.out.println("ERROR: " + ": file" + ITEMS_FILE_NAME +  "not found");
-			e.printStackTrace();
-		} catch (IOException e2) {
-			System.out.println("ERROR: " + ": file" + ITEMS_FILE_NAME +  "failed to read");
-			e2.printStackTrace();
-		} finally {
-			try {
-				br.close();
-			} catch (IOException e3) {
-				e3.printStackTrace();
-			}
-		}
-	}
-	
-	/**
-	 * Returns an itemType enum based on the String s parameter.
-	 * 
-	 * @param s
 	 * @return
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	private ItemType findItemType(String s) {
-		switch(s.toLowerCase()) {
-		case "chestpiece":
-			return ItemType.CHESTPIECE;
-		case "leggings":
-			return ItemType.LEGGINGS;
-		case "helmet":
-			return ItemType.HELMET;
-		case "shoes":
-			return ItemType.SHOES;
-		case "gaunlets":
-			return ItemType.GAUNLETS;
+	public int getCurrency(String username) throws FileNotFoundException, IOException {
+		properties.clear();
+		
+		try(FileInputStream inFile = new FileInputStream(USER_CURRENCY_FILE_OBJECT)) {
+			properties.load(inFile);
+		}
+		catch(FileNotFoundException e) {
+			System.out.println(USER_CURRENCY_FILE_NAME + ": file not found");
 		}
 		
-		return null;
+		return Integer.parseInt((String) properties.get(username));
 	}
 	
 	/**
-	 * Returns a Rarity enum based on the String s parameter 
+	 * Returns a string of the username currently playing.
 	 * 
-	 * @param s
 	 * @return
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	private Rarity findItemRarity(String s) {
-		switch(s.toLowerCase()) {
-		case "common":
-			return Rarity.COMMON;
-		case "uncommon":
-			return Rarity.UNCOMMON;
-		case "rare":
-			return Rarity.RARE;
-		case "lengendary":
-			return Rarity.LEGENDARY;
+	public String getCurrentUser() throws FileNotFoundException, IOException {
+		properties.clear();
+		
+		try(FileInputStream inFile = new FileInputStream(CURRENT_USER_FILE_OBJECT)) {
+			properties.load(inFile);
+		}
+		catch(FileNotFoundException e) {
+			System.out.println(CURRENT_USER_FILE_NAME + ": file not found");
 		}
 		
-		return null;
+		for(String keys : properties.stringPropertyNames()) {
+			return keys;
+		}
+		
+		return "ERROR";
 	}
 	
 	/**
-	 * If user has enough money, then the item is added to inventory
+	 * Adds item to inventory.properties file
 	 * 
-	 * Otherwise, print error message
+	 * @throws IOException 
 	 */
-	public void validateAndBuyItem() {
+	public void addToInventory(String username, String itemName) throws IOException {
+		properties.clear();
 		
+		try(FileInputStream inFile = new FileInputStream(INVENTORY_FILE_OBJECT)) {
+			properties.load(inFile);
+			inFile.close();
+		}
+		catch(FileNotFoundException e) {
+			System.out.println(INVENTORY_FILE_NAME + ": file not found");
+		}
+		
+		String newInventory = properties.get(username) + itemName;
+		
+		
+		
+		try(FileOutputStream outFile = new FileOutputStream(INVENTORY_FILE_OBJECT, false)) {
+			properties.replace(username, newInventory);
+			properties.store(outFile, null);
+			outFile.close();
+		}
+		catch(FileNotFoundException e) {
+			System.out.println(INVENTORY_FILE_NAME + ": file not found");
+		}
+	}
+	
+	public void deductCurrency(String username, int amountDeduced) throws IOException {
+		properties.clear();
+		
+		try(FileInputStream inFile = new FileInputStream(USER_CURRENCY_FILE_OBJECT)) {
+			properties.load(inFile);
+		}
+		catch(FileNotFoundException e) {
+			System.out.println(USER_CURRENCY_FILE_NAME + ": file not found");
+		}
+		
+		try(FileOutputStream outFile = new FileOutputStream(USER_CURRENCY_FILE_OBJECT, false)) {
+			properties.replace(username, String.valueOf(Integer.parseInt((String) properties.get(username)) - amountDeduced));
+			properties.store(outFile, null);
+			outFile.close();
+		}
+		catch(FileNotFoundException e) {
+			System.out.println(INVENTORY_FILE_NAME + ": file not found");
+		}
 	}
 	
 	/**
-	 * Adds item to inventory
+	 * If current users currency is equal to or greater than item price, them add item to inventory.properties file.
+	 * @throws IOException 
 	 */
-	public void addToInventory() {
-		
+	public void buyKnightChestpiece() throws IOException {
+		String username = getCurrentUser();
+		int currency = getCurrency(username);
+				
+		if(currency >= 100) {
+			deductCurrency(username, 100);
+			addToInventory(username, ",KnightChestpiece");
+		} else {
+			a.setContentText("Not enough currency");
+			a.showAndWait();
+		}
+	}
+
+	public void buyKnightBoots() throws FileNotFoundException, IOException {
+		String username = getCurrentUser();
+		int currency = getCurrency(username);
+				
+		if(currency >= 100) {
+			deductCurrency(username, 100);
+			addToInventory(username, ",KnightBoots");
+		} else {
+			a.setContentText("Not enough currency");
+			a.showAndWait();
+		}
+	}
+
+	public void buyKnightHelmet() throws FileNotFoundException, IOException {
+		String username = getCurrentUser();
+		int currency = getCurrency(username);
+				
+		if(currency >= 100) {
+			deductCurrency(username, 100);
+			addToInventory(username, ",KnightHelmet");
+		} else {
+			a.setContentText("Not enough currency");
+			a.showAndWait();
+		}
+	}
+
+	public void buyKnightLeggings() throws FileNotFoundException, IOException {
+		String username = getCurrentUser();
+		int currency = getCurrency(username);
+				
+		if(currency >= 100) {
+			deductCurrency(username, 100);
+			addToInventory(username, ",KnightLeggings");
+		} else {
+			a.setContentText("Not enough currency");
+			a.showAndWait();
+		}
+	}
+
+	public void buyMercenaryChestpiece() throws FileNotFoundException, IOException {
+		String username = getCurrentUser();
+		int currency = getCurrency(username);
+				
+		if(currency >= 100) {
+			deductCurrency(username, 100);
+			addToInventory(username, ",MercenaryChestpiece");
+		} else {
+			a.setContentText("Not enough currency");
+			a.showAndWait();
+		}
+	}
+
+	public void buySpartanHelmet() throws FileNotFoundException, IOException {
+		String username = getCurrentUser();
+		int currency = getCurrency(username);
+				
+		if(currency >= 100) {
+			deductCurrency(username, 100);
+			addToInventory(username, ",SpartanHelmet");
+		} else {
+			a.setContentText("Not enough currency");
+			a.showAndWait();
+		}
+	}
+
+	public void showSoldOutMessage() {
+		a.setContentText("Sorry, but the item you want to buy is sold out. Please try again later.");
+		a.showAndWait();
 	}
 }

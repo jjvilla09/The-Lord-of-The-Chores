@@ -8,22 +8,24 @@ import java.net.URL;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.ResourceBundle;
-
+import application.model.Shop;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class MainController implements Initializable {
 	
+	Shop shopModel = new Shop();
 	private Properties properties = new Properties();
     @FXML private AnchorPane mainPane;
-    @FXML private Text currentUserTextBox;
+    @FXML private Label currentUserLabel;
+    @FXML private Label currencyLabel;
 
     @FXML
     void questBoardHandle(ActionEvent event) throws IOException {
@@ -71,7 +73,17 @@ public class MainController implements Initializable {
 			e2.printStackTrace();
 		}
 		
+		try {
+			String username = shopModel.getCurrentUser();
+			String currency = String.valueOf(shopModel.getCurrency(username));
+			currencyLabel.setText(currency);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		Enumeration<Object> test = properties.elements();
-		currentUserTextBox.setText("Current User: " + test.nextElement().toString());
+		currentUserLabel.setText("Current User: " + test.nextElement().toString());
 	}
 }
