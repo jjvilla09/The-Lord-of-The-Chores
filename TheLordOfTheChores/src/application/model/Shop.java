@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Properties;
 
 /**
  * @author Joshua Villarreal (uut835)
@@ -14,6 +16,10 @@ import java.util.ArrayList;
 
 public class Shop {
 	private final static String ITEMS_FILE_NAME = "data/Items.csv";
+	private final static String INVENTORY_FILE_NAME = "data/inventory.txt";
+	private final static File INVENTORY_FILE_OBJECT = new File(INVENTORY_FILE_NAME);
+	private HashMap<String, String> inventory = new HashMap<>();
+	private Properties properties = new Properties();
 	private ArrayList<Item> Items = new ArrayList<>();
 	private ArrayList<Item> ItemsInStock = new ArrayList<>();
 	
@@ -114,11 +120,4 @@ public class Shop {
 	public void addToInventory() {
 		
 	}
-	
-	public void randomizeVendorItems() {
-		// Fill the shop based on the time of day using LocalDateTime
-		// Once it turns 12:00am on user's clock, randomize items.
-		// Note to self: Place inside of the initialize function inside ShopController.java
-	}
-	
 }
