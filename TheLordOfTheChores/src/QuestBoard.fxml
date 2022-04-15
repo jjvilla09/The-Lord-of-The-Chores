@@ -32,5 +32,6 @@
             <Image url="@../data/Question-Mark-clipart-transparent.png" />
          </image>
       </ImageView>
+      <TextField layoutX="123.0" layoutY="166.0" />
    </children>
 </AnchorPane>
