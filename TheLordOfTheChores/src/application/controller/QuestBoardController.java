@@ -134,8 +134,8 @@ public class QuestBoardController implements Initializable {
     				+ "sum-total of the quests!"
     				+ "\n\nAnd it's as simple as that! Good luck adventuring!");
     		a.showAndWait();
-    	}
-    }
+    	} // end of if statement
+    } // end of handleHelp method
 
-}
+} // end of QuestBoardController class
 
