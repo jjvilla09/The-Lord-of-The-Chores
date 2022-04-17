@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.model.Quest;
 import application.model.QuestBoard;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,8 +22,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -40,13 +38,16 @@ public class QuestBoardController implements Initializable {
     private TextField questNameTF; // -questNameTF: TextField
 	
 	@FXML
+    private ListView<String> questList; // -questList: ListView<Quest>
+	
+	@FXML
     private AnchorPane questBoardPane;	// -questBoardPane: AnchorPane
 	
 	@FXML
     private ImageView toHomeImage, toHelpImage; // -toHomeImage, -toHelpImage: ImageView
 	
 	@FXML
-    private Button createNewQuestButton; // -createNewQuestButton: Button
+    private Button createNewQuestButton, completeQuestBtn; // -createNewQuestButton, -completeQuestBtn: Button
 	
 	@FXML
 	private Alert a = new Alert(AlertType.NONE); // -a: Alert
@@ -92,9 +93,27 @@ public class QuestBoardController implements Initializable {
     		} // end of nested if
     		String[] v = { questNameTF.getText(), diffChoice.getValue() };
     		QuestBoard qb = new QuestBoard();
-    		qb.createQuest(v);
+    		questList.getItems().add(qb.createQuest(v).toString());
     	} // end of if
     } // end of createNewQuest method
+    
+    @FXML
+    void completeQuest(ActionEvent event) {
+    	if (event.getSource() == completeQuestBtn) {
+    		System.out.println("completeQuestBtn pressed");
+    		if (questList.getItems().isEmpty()) {
+    			a.setAlertType(AlertType.ERROR);
+    			a.setContentText("ERROR: No quest has been entered. Please create a quest before clicking on this.");
+    			a.showAndWait();
+    		} // end of nested if
+    		else {
+    			a.setAlertType(AlertType.INFORMATION);
+    			a.setContentText("Congratulations, you've completed " + questList.getItems().size() + " quests! Well done, brave adventurer!");
+    			a.showAndWait();
+    			questList.getItems().clear();
+    		} // end of nested else
+    	} // end of if statement
+    } // end of completeQuest
     
     @FXML
     void handleHelp(MouseEvent event) {
@@ -109,9 +128,11 @@ public class QuestBoardController implements Initializable {
     				+ "Step 2: Select a difficulty, from Easy, Medium, and Hard. The difficulty determines"
     				+  " the amount of Gold obtained from completing the quest.\n"
     				+ "Step 3: Press the Create New Quest button after filling in these two fields and the quest"
-    				+ " should create a quest down at the bottom. You can only create one quest at a time, so don't"
-    				+ " try and double-dip!\n"
-    				+ "\n\nHappy Trails!");
+    				+ " should create a quest down at the bottom. You can create as many quests as you like!\n"
+    				+ "Step 4: After creating a quest, the right side should display the quest you just created. To actually complete it, "
+    				+ "click on the \"Complete Quests\" button and all the quests in the list should be completed, and you will be rewarded the "
+    				+ "sum-total of the quests!"
+    				+ "\n\nAnd it's as simple as that! Good luck adventuring!");
     		a.showAndWait();
     	}
     }
