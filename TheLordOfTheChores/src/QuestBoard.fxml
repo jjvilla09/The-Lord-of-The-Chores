@@ -32,6 +32,9 @@
             <Image url="@../data/Question-Mark-clipart-transparent.png" />
          </image>
       </ImageView>
-      <TextField layoutX="123.0" layoutY="166.0" />
+      <Label layoutX="27.0" layoutY="280.0" text="Quest Name:" />
+      <TextField fx:id="questNameTF" layoutX="27.0" layoutY="301.0" />
+      <Label layoutX="27.0" layoutY="415.0" text="Quest Difficulty:" />
+      <ChoiceBox fx:id="diffChoice" layoutX="27.0" layoutY="436.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
