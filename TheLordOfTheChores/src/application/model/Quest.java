@@ -42,5 +42,12 @@ public class Quest {
 		this.qReward = qReward;
 	}
 	// end of Getters and Setters
+
+	@Override
+	public String toString() {
+		return "Title: " + qName + " Difficulty: " + qDiff + " Reward: " + qReward + "G";
+	}
+	
+	
 	
 } // end of Quest class

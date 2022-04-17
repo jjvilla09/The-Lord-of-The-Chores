@@ -22,7 +22,7 @@
             <Image url="@../data/homeButton.png" />
          </image>
       </ImageView>
-      <Button fx:id="createNewQuestButton" alignment="CENTER" layoutX="636.0" layoutY="570.0" mnemonicParsing="false" onAction="#createNewQuest" style="-fx-background-color: Brown;" text="Create New Quest">
+      <Button fx:id="createNewQuestButton" alignment="CENTER" layoutX="117.0" layoutY="570.0" mnemonicParsing="false" onAction="#createNewQuest" style="-fx-background-color: Brown;" text="Create New Quest">
          <font>
             <Font name="Lucida Sans Unicode" size="15.0" />
          </font>
@@ -32,6 +32,29 @@
             <Image url="@../data/Question-Mark-clipart-transparent.png" />
          </image>
       </ImageView>
-      <TextField layoutX="123.0" layoutY="166.0" />
+      <Label layoutX="41.0" layoutY="193.0" text="Quest Name">
+         <font>
+            <Font name="Lucida Sans Regular" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="questNameTF" layoutX="41.0" layoutY="214.0" />
+      <Label layoutX="41.0" layoutY="299.0" text="Quest Difficulty">
+         <font>
+            <Font name="Lucida Sans Regular" size="15.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="diffChoice" layoutX="42.0" layoutY="320.0" prefWidth="150.0" />
+      <ListView fx:id="questList" layoutX="458.0" layoutY="204.0" prefHeight="349.0" prefWidth="298.0" />
+      <Separator layoutX="404.0" layoutY="93.0" orientation="VERTICAL" prefHeight="521.0" prefWidth="0.0" />
+      <Label alignment="CENTER" layoutX="458.0" layoutY="172.0" prefHeight="21.0" prefWidth="298.0" text="Incomplete Quests">
+         <font>
+            <Font name="Lucida Sans Regular" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="completeQuestBtn" layoutX="535.0" layoutY="573.0" mnemonicParsing="false" onAction="#completeQuest" style="-fx-background-color: brown;" text="Complete Quests">
+         <font>
+            <Font name="Lucida Sans Regular" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
