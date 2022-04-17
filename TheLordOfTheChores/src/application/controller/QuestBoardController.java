@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.model.Quest;
+import application.model.QuestBoard;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -82,16 +83,18 @@ public class QuestBoardController implements Initializable {
     @FXML
     void createNewQuest(ActionEvent event) {
     	if (event.getSource() == createNewQuestButton) {
-    		
     		System.out.println("createNewQuestButton pressed");
-    		if (questNameTF.getText().isEmpty()) {
+    		if (questNameTF.getText().isEmpty() || diffChoice.getValue().isEmpty()) {
     			a.setAlertType(AlertType.ERROR);
     			a.setContentText("ERROR: One of the two fields isn't complete. Please fill in all "
     					+ "fields before creating the quest.");
     			a.showAndWait();
-    		}
-    	}
-    }
+    		} // end of nested if
+    		String[] v = { questNameTF.getText(), diffChoice.getValue() };
+    		QuestBoard qb = new QuestBoard();
+    		qb.createQuest(v);
+    	} // end of if
+    } // end of createNewQuest method
     
     @FXML
     void handleHelp(MouseEvent event) {
