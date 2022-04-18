@@ -15,7 +15,7 @@
 <AnchorPane fx:id="shopPane" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #964f29;" stylesheets="@application/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ShopController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#75391a" height="66.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" />
-      <ImageView fitHeight="174.0" fitWidth="526.0" layoutX="137.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="174.0" fitWidth="526.0" layoutX="138.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../data/ShopSign.png" />
          </image>
@@ -117,8 +117,13 @@
             <Image url="@../data/homeButton.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="36.0" layoutX="14.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" width="117.0" />
-      <Circle fill="#e5ff00" layoutX="109.0" layoutY="33.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
-      <Label fx:id="currencyLabel" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="25.0" prefHeight="17.0" prefWidth="63.0" text="Label" textFill="WHITE" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="36.0" layoutX="14.0" layoutY="73.0" stroke="BLACK" strokeType="INSIDE" width="117.0" />
+      <Circle fill="#e5ff00" layoutX="109.0" layoutY="91.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="currencyLabel" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="83.0" prefHeight="17.0" prefWidth="63.0" text="Label" textFill="WHITE" />
+      <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="14.0" layoutY="12.0" onMouseClicked="#handleHelp" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../data/Question-Mark-clipart-transparent.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
