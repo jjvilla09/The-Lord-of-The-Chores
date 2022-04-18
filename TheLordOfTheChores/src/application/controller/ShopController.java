@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -23,6 +25,7 @@ import application.model.Shop;
 
 public class ShopController implements Initializable {
 	
+	Alert a = new Alert(null);
 	private Shop shopModel = new Shop();
 	@FXML private AnchorPane shopPane;	//pane
 	@FXML private AnchorPane mainPane;	//pane
@@ -41,33 +44,52 @@ public class ShopController implements Initializable {
     }
     
     @FXML
+    void handleHelp(MouseEvent event) {
+		System.out.println("toHelpImage pressed");
+		a.setAlertType(AlertType.INFORMATION);
+		
+		a.setContentText("The main goal of The Lord of the Chores is to encourage gamers to take up"
+				+ "any hobbies or daily goals to improve both physical and mental health. \n\n"
+				+ "This is the shop. After completing enough quests, purchase items with the gold earned"
+				+ "to customize your character.\n\n"
+				+ "HOW TO:\n"
+				+ "Step 1: Complete quests.\n"
+				+ "Step 2: Earn enough gold to buy some gear. The higher the rarity, the better! (and the more "
+				+ "expensive...).\n"
+				+ "Step 3: Equip the cool looking gear you just bought in the inventory screen."
+				+ "\n\nAnd that's it! See you around adventurer!");
+		a.showAndWait();
+    	
+    }
+    
+    @FXML
     void buyKnightChestpieceHandle(MouseEvent event) throws IOException {
-    	shopModel.buyKnightChestpiece();
+    	shopModel.buyKnightChestpiece(currencyLabel);
     }
 
     @FXML
     void buyKnightBootsHandle(MouseEvent event) throws FileNotFoundException, IOException {
-    	shopModel.buyKnightBoots();
+    	shopModel.buyKnightBoots(currencyLabel);
     }
 
     @FXML
     void buyKnightHelmetHandle(MouseEvent event) throws FileNotFoundException, IOException {
-    	shopModel.buyKnightHelmet();
+    	shopModel.buyKnightHelmet(currencyLabel);
     }
 
     @FXML
     void buyKnightLeggingsHandle(MouseEvent event) throws FileNotFoundException, IOException {
-    	shopModel.buyKnightLeggings();
+    	shopModel.buyKnightLeggings(currencyLabel);
     }
 
     @FXML
     void buyMercenaryChestpieceHandle(MouseEvent event) throws FileNotFoundException, IOException {
-    	shopModel.buyMercenaryChestpiece();
+    	shopModel.buyMercenaryChestpiece(currencyLabel);
     }
 
     @FXML
     void buySpartanHelmetHandle(MouseEvent event) throws FileNotFoundException, IOException {
-    	shopModel.buySpartanHelmet();
+    	shopModel.buySpartanHelmet(currencyLabel);
     }
 
     @FXML
@@ -77,16 +99,7 @@ public class ShopController implements Initializable {
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		try {
-			String username = shopModel.getCurrentUser();
-			String currency = String.valueOf(shopModel.getCurrency(username));
-			currencyLabel.setText(currency);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		shopModel.updateCurrency(currencyLabel);
 	}
 }
 
