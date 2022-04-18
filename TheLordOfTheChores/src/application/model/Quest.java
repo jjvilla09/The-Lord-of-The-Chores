@@ -45,7 +45,7 @@ public class Quest {
 
 	@Override
 	public String toString() {
-		return "Title: " + qName + " Difficulty: " + qDiff + " Reward: " + qReward + "G";
+		return qName + " " + qDiff + " " + qReward;
 	}
 	
 	
