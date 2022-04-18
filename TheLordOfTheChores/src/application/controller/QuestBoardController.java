@@ -7,11 +7,14 @@
 package application.controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.model.Quest;
 import application.model.QuestBoard;
+import application.model.Shop;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +41,7 @@ public class QuestBoardController implements Initializable {
     private TextField questNameTF; // -questNameTF: TextField
 	
 	@FXML
-    private ListView<String> questList; // -questList: ListView<Quest>
+    private ListView<Quest> questList; // -questList: ListView<Quest>
 	
 	@FXML
     private AnchorPane questBoardPane;	// -questBoardPane: AnchorPane
@@ -80,6 +83,8 @@ public class QuestBoardController implements Initializable {
     	window.show();
     	}
     }
+    
+    QuestBoard qb = new QuestBoard();
 
     @FXML
     void createNewQuest(ActionEvent event) {
@@ -92,13 +97,13 @@ public class QuestBoardController implements Initializable {
     			a.showAndWait();
     		} // end of nested if
     		String[] v = { questNameTF.getText(), diffChoice.getValue() };
-    		QuestBoard qb = new QuestBoard();
-    		questList.getItems().add(qb.createQuest(v).toString());
+    		//QuestBoard qb = new QuestBoard();
+    		questList.getItems().add(qb.createQuest(v));
     	} // end of if
     } // end of createNewQuest method
     
     @FXML
-    void completeQuest(ActionEvent event) {
+    void completeQuest(ActionEvent event) throws FileNotFoundException, IOException {
     	if (event.getSource() == completeQuestBtn) {
     		System.out.println("completeQuestBtn pressed");
     		if (questList.getItems().isEmpty()) {
@@ -107,6 +112,13 @@ public class QuestBoardController implements Initializable {
     			a.showAndWait();
     		} // end of nested if
     		else {
+    			int total = 0;
+    			for (int i = 0; i < questList.getItems().size(); i++) {
+    				total += questList.getItems().get(i).getqReward();
+    			}
+    			Shop sp = new Shop();
+    			String usr = sp.getCurrentUser();
+    			qb.addCurrency(usr, total);
     			a.setAlertType(AlertType.INFORMATION);
     			a.setContentText("Congratulations, you've completed " + questList.getItems().size() + " quests! Well done, brave adventurer!");
     			a.showAndWait();
