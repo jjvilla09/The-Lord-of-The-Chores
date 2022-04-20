@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="charCreationPane" prefHeight="619.0" prefWidth="800.0" style="-fx-background-color: #b5651d;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CharCreationController">
+   <children>
+      <Button fx:id="createNewCharButton" alignment="CENTER" layoutX="608.0" layoutY="733.0" mnemonicParsing="false" onAction="#createNewChar" style="-fx-background-color: Brown;" text="Create New Character">
+         <font>
+            <Font name="Lucida Sans Unicode" size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="103.0" fitWidth="369.0" layoutX="216.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../data/CharacterCreationSign.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="text" layoutX="201.0" layoutY="130.0" prefHeight="179.0" prefWidth="411.0" />
+      <Button fx:id="halfling" layoutX="216.0" layoutY="329.0" mnemonicParsing="false" onAction="#halflingB" text="Half-ling" />
+      <Button fx:id="human" layoutX="88.0" layoutY="329.0" mnemonicParsing="false" onAction="#humanB" text="Human" />
+      <Button fx:id="elf" layoutX="474.0" layoutY="329.0" mnemonicParsing="false" onAction="#elfB" text="Elf" />
+      <Button fx:id="orc" layoutX="350.0" layoutY="329.0" mnemonicParsing="false" onAction="#orcB" text="Orc" />
+      <ImageView fx:id="humanPic" fitHeight="100.0" fitWidth="100.0" layoutX="80.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../data/Human03.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="elfPic" fitHeight="100.0" fitWidth="100.0" layoutX="439.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../data/elf01.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="orcPic" fitHeight="100.0" fitWidth="100.0" layoutX="317.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../data/Orc01.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="halflingPic" fitHeight="100.0" fitWidth="100.0" layoutX="197.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../data/halfling02.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
