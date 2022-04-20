@@ -1,13 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane fx:id="inventoryPane" prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="application.controller.InventoryController">
+<AnchorPane fx:id="inventoryPane" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #964f29;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.InventoryController">
    <children>
-      <Button layoutX="193.0" layoutY="159.0" mnemonicParsing="false" onAction="#homeHandle" text="Home" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#75391a" height="66.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="800.0" />
+      <ImageView fitHeight="135.0" fitWidth="451.0" layoutX="172.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../data/InventorySign.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="56.0" fitWidth="44.0" layoutX="742.0" layoutY="10.0" onMouseClicked="#homeHandle" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../data/homeButton.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="22.0" layoutY="167.0" prefHeight="38.0" prefWidth="126.0" text="Equipment">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="218.0" prefHeight="27.0" prefWidth="108.0" text="Helmet:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <ListView fx:id="helmetList" editable="true" layoutX="25.0" layoutY="245.0" prefHeight="44.0" prefWidth="247.0" />
+      <Label layoutX="25.0" layoutY="289.0" prefHeight="27.0" prefWidth="108.0" text="Chestpiece:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <ListView fx:id="chestList" editable="true" layoutX="25.0" layoutY="316.0" prefHeight="44.0" prefWidth="247.0" />
+      <Label layoutX="25.0" layoutY="360.0" prefHeight="27.0" prefWidth="108.0" text="Leggings:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <ListView fx:id="legList" editable="true" layoutX="25.0" layoutY="387.0" prefHeight="44.0" prefWidth="247.0" />
+      <Label layoutX="25.0" layoutY="431.0" prefHeight="27.0" prefWidth="108.0" text="Boots:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <ListView fx:id="bootList" editable="true" layoutX="25.0" layoutY="458.0" prefHeight="44.0" prefWidth="247.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="36.0" layoutX="24.0" layoutY="83.0" stroke="BLACK" strokeType="INSIDE" width="117.0" />
+      <Circle fill="#e5ff00" layoutX="119.0" layoutY="101.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+      <Label fx:id="currencyLabel" alignment="CENTER_RIGHT" layoutX="36.0" layoutY="93.0" prefHeight="17.0" prefWidth="63.0" text="Label" textFill="WHITE" />
+      <Button layoutX="118.0" layoutY="533.0" mnemonicParsing="false" onAction="#equipItemHandle" text="Equip">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
