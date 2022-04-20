@@ -77,7 +77,7 @@ public class Inventory {
 			e.printStackTrace();
 		}
 	}
-	public void getInventory(ListView<String> helmetList,ListView<String> chestList,ListView<String> legList,ListView<String> bootList) throws FileNotFoundException, IOException {
+	public void getInventory(ListView<String> helmetList, ListView<String> chestList, ListView<String> gauntList, ListView<String> legList, ListView<String> bootList) throws FileNotFoundException, IOException {
 		properties.clear();
 		String user = getCurrentUser();
 		try(FileInputStream inFile = new FileInputStream(INVENTORY_FILE_OBJECT)) {
@@ -95,6 +95,9 @@ public class Inventory {
 				if(split[i].contains("Chest")){
 					chestList.getItems().add(split[i]);
 				}
+				if(split[i].contains("Gauntlets")){
+					gauntList.getItems().add(split[i]);
+				}
 				if(split[i].contains("Leggings")){
 					legList.getItems().add(split[i]);
 				}
@@ -109,23 +112,26 @@ public class Inventory {
 		}
 		
 	}
-	public void equipItem(String helmet,String chest,String leg,String boot)  throws IOException{
+	public void equipItem(String helmet,String chest,String gaunt,String leg,String boot)  throws IOException{
 		properties.clear(); // Starts from scratch
 		String user = getCurrentUser();
 		String equipment;
-		if( helmet.equals("")) {
+		if( helmet == null) {
 			helmet = "NONE";
 		}
-		if( chest.equals("")) {
+		if( chest == null) {
 			chest = "NONE";
 		}
-		if( leg.equals("")) {
+		if( gaunt == null) {
+			gaunt = "NONE";
+		}
+		if( leg == null) {
 			leg = "NONE";
 		}
-		if( boot.equals("")) {
+		if( boot == null) {
 			boot = "NONE";
 		}
-		equipment = helmet + "," + chest + "," + leg + "," + boot ;
+		equipment = helmet + "," + chest + "," + gaunt + "," + leg + "," + boot ;
 		System.out.println(equipment);
 		try(FileInputStream inFile = new FileInputStream(ITEMS_EQUIPPED_FILE_OBJECT)) {
 			properties.load(inFile); // Load file data	
