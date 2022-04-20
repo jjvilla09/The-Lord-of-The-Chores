@@ -8,4 +8,4 @@ If you have the EGIT plug in on your Eclipse, just switch to the Git Perspective
 OVERVIEW:
 There's no visual UI to show what the current user has equiped, but there is functionality for equipping any of the purchased items from the shop in the Inventory scene. Everything else, however, is functional.
 
-The classes are seperated into different packages: the "application" package holds the Main class and the .css file. The "application.controller" package 
+The classes are seperated into different packages: the "application" package holds the Main class and the .css file. The "application.controller" package holds the controller classes for the .fxml files, while the "application.model" package holds the classes that handle the logic behind the controller classes.
