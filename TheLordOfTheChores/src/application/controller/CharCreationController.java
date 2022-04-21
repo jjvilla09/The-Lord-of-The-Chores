@@ -17,13 +17,8 @@ import javafx.stage.Stage;
 
 public class CharCreationController {
 	
-	@FXML private ImageView humanPic;
 
 	@FXML private Button orc;
-
-	@FXML private ImageView elfPic;
-	
-	@FXML private ImageView orcPic;
 	
 	@FXML private Button createNewCharButton;
 
@@ -37,7 +32,9 @@ public class CharCreationController {
 	
 	@FXML private Button elf;
 	
-	@FXML private ImageView halflingPic;
+	@FXML private Button wizard;
+	
+	@FXML private Button dwarf;
 	
 	@FXML
 	void createNewChar(ActionEvent event) throws IOException {
@@ -91,6 +88,28 @@ public class CharCreationController {
 				+ " in a timely manner.\n Not the best at multitasking"
 				+ "or planning ahead.\n But very good at taking down one task"
 				+ "at a time and completing checklist.");
+	    }
+	
+	@FXML
+	void dwarfB(ActionEvent event) {
+		text.clear();
+		text.appendText("\t\t\tThe Dwarf character. \n"
+				+ " Very hard working and diligent in their work.\n"
+				+ "Sometimes dwarves are overly determined in their work\n"
+				+ "and forget to rest or slowdown on completing task.\n"
+				+ " The dwarf excels in group work and cares that the\n"
+				+ " overall goal is completed." );
+	    }
+	
+	@FXML
+	void wizardB(ActionEvent event) {
+		text.clear();
+		text.appendText("\t\t\tThe Wizard character. \n"
+				+ "Wizards are very unique in the way they view the world\n"
+				+ "They set goals that are abstract but helpful to their\n"
+				+ "long term goal and overall success. Wizards are wise\n"
+				+ "and understand how to use their uniqueness to overcome\n"
+				+ "any problems.");
 	    }
 
 	}
