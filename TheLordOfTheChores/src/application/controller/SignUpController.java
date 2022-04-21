@@ -44,13 +44,13 @@ public class SignUpController {
 	    String confirmpass=confirmPassword.getText();
 	    
 	    if(signUpModel.loadSignUp(user, pass, confirmpass, invalid)) {
-	    	URL url = new File("src/Login.fxml").toURI().toURL();
+	    	URL url = new File("src/CharCreation.fxml").toURI().toURL();
     		mainPane = FXMLLoader.load(url);
-    		Scene scene = new Scene(mainPane, 600, 400);
+    		Scene scene = new Scene(mainPane, 800, 800);
     		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     		window.setScene(scene);
     		window.setScene(scene);
-    		window.setTitle("The Lord of the Chores - Login");
+    		window.setTitle("The Lord of the Chores - Character Creation");
     		window.show();
 	    }
 	}
