@@ -34,6 +34,9 @@ public class InventoryController implements Initializable{
     private ListView<String> bootList;//list view of boots
     
     @FXML
+    private Label equipSuc;// label display that equipment has ben equipped
+    
+    @FXML
     private Label currencyLabel;//currency label
 
 	@FXML
@@ -65,6 +68,8 @@ public class InventoryController implements Initializable{
     	try {
     		//call equipItem method to equip armor
 			in.equipItem(helmet, chest, gaunt, leg, boot);
+			//set text when equipment has been equipped
+			equipSuc.setText("Equipment has been equipped!");
 		//catch for IO exception
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -74,6 +79,8 @@ public class InventoryController implements Initializable{
     //display information when screen is open up
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		//clear text
+		equipSuc.setText("");
 		//call update currency to display currency
 		in.updateCurrency(currencyLabel);
 		try {
