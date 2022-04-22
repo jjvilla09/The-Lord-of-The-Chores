@@ -19,11 +19,17 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			//gets login url
 			URL url = new File("src/Login.fxml").toURI().toURL();
+			//loads pane
 	    	AnchorPane root = FXMLLoader.load(url);
+	    	//create scene
 			Scene scene = new Scene(root,600,400);
+			//set scene
 			primaryStage.setScene(scene);
+			//set title
 			primaryStage.setTitle("The Lord of the Chores - Login");
+			//display scene
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
