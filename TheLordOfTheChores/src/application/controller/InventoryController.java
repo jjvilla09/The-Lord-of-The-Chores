@@ -47,12 +47,19 @@ public class InventoryController implements Initializable{
 	//home handle those take user back to Home page
     @FXML
     void homeHandle(MouseEvent event) throws IOException {
+    	//get main url
     	URL url = new File("src/Main.fxml").toURI().toURL();
+    	//get pane
     	inventoryPane = FXMLLoader.load(url);
+    	//create scene
     	Scene scene = new Scene(inventoryPane, 800, 800);
+    	//create stage
     	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    	//set title
     	window.setTitle("The Lord of the Chores - Homepage");
+    	//set scene
     	window.setScene(scene);
+    	//display scene
     	window.show();
     }
     //when user clicks on equip it should equip items selected

@@ -43,7 +43,6 @@ public class CharCreationController {
 		Scene scene = new Scene(charCreationPane, 600, 400);
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(scene);
-		window.setScene(scene);
 		window.setTitle("The Lord of the Chores - Login");
 		window.show();
 	}
