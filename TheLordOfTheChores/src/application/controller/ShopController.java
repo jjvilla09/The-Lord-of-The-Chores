@@ -24,11 +24,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import application.model.Shop;
 
-/**
- * @author Joshua Villarreal (uut835)
- *
- */
-
 public class ShopController implements Initializable {
 	
 	Alert a = new Alert(null);
@@ -36,8 +31,14 @@ public class ShopController implements Initializable {
 	@FXML private AnchorPane shopPane;	//pane
 	@FXML private AnchorPane mainPane;	//pane
 	@FXML private Label currencyLabel;
-
 	
+	
+	/**
+	 * Sends the user to the main menu screen.
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
     @FXML
     void homeHandle(MouseEvent event) throws IOException {
     	URL url = new File("src/Main.fxml").toURI().toURL();
@@ -49,6 +50,11 @@ public class ShopController implements Initializable {
     	window.show();
     }
     
+    /**
+     * Prompts the user with helpful information about the shop.
+     * 
+     * @param event
+     */
     @FXML
     void handleHelp(MouseEvent event) {
 		System.out.println("toHelpImage pressed");
@@ -68,41 +74,90 @@ public class ShopController implements Initializable {
     	
     }
     
+    /**
+     * Buys a Knight's Chestpiece
+     * 
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void buyKnightChestpieceHandle(MouseEvent event) throws IOException {
     	shopModel.buyKnightChestpiece(currencyLabel);
     }
-
+    
+    /**
+     * Buys a Knight's Boots
+     * 
+     * @param event
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     @FXML
     void buyKnightBootsHandle(MouseEvent event) throws FileNotFoundException, IOException {
     	shopModel.buyKnightBoots(currencyLabel);
     }
-
+    
+    /**
+     * Buys a Knight's Helmet
+     * 
+     * @param event
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     @FXML
     void buyKnightHelmetHandle(MouseEvent event) throws FileNotFoundException, IOException {
     	shopModel.buyKnightHelmet(currencyLabel);
     }
-
+    
+    /**
+     * Buys a Knight's Leggings
+     * 
+     * @param event
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     @FXML
     void buyKnightLeggingsHandle(MouseEvent event) throws FileNotFoundException, IOException {
     	shopModel.buyKnightLeggings(currencyLabel);
     }
-
+    
+    /**
+     * Buys Mercenary Chest Piece
+     * 
+     * @param event
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     @FXML
     void buyMercenaryChestpieceHandle(MouseEvent event) throws FileNotFoundException, IOException {
     	shopModel.buyMercenaryChestpiece(currencyLabel);
     }
-
+    
+    /**
+     * Buys Spartan Helmet
+     * 
+     * @param event
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     @FXML
     void buySpartanHelmetHandle(MouseEvent event) throws FileNotFoundException, IOException {
     	shopModel.buySpartanHelmet(currencyLabel);
     }
-
+    
+    /**
+     * Prompts the user with sold out message
+     * 
+     * @param event
+     */
     @FXML
     void soldOutHandle(MouseEvent event) {
     	shopModel.showSoldOutMessage();
     }
     
+    /**
+     * Initializes currency label
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		shopModel.updateCurrency(currencyLabel);

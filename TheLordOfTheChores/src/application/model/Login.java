@@ -1,3 +1,9 @@
+/**
+ * Author: Joshua Villarreal (uut835)
+ * File: Login.java
+ * Purpose: Holds logical operations to be used in LoginController.java
+ */
+
 package application.model;
 
 import java.io.File;
@@ -15,8 +21,6 @@ public class Login {
 	private HashMap<String, String> userPassHashMap = new HashMap<>();
 	private static HashMap<String,String> currUser = new HashMap<>();
 	private static Properties properties = new Properties();
-	//private static Properties properties2 = new Properties();
-	//public ArrayList<Login> login =new ArrayList<Login>();
 	
 	// -------------- FILE STUFF -------------- //
 	private static final String USER_PASSWORD_FILE_NAME = "userPassword.properties";

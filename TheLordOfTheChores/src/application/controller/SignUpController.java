@@ -1,3 +1,9 @@
+/**
+ * Author: Joshua Villarreal (uut835)
+ * File: SignUpController.java
+ * Purpose: Holds logical operations to be used in SignUp.fxml
+ */
+
 package application.controller;
 
 /**
