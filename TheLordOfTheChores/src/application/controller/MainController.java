@@ -29,9 +29,9 @@ import javafx.stage.Stage;
 public class MainController implements Initializable {
 
 
-    @FXML private AnchorPane mainPane;
-    @FXML private Label currentUserLabel;
-    @FXML private Label currencyLabel;
+    @FXML private AnchorPane mainPane;	//anchor pane
+    @FXML private Label currentUserLabel;	//current user label
+    @FXML private Label currencyLabel;	// currency label
     
     //create properties variable for properties class
     private Properties properties = new Properties();
