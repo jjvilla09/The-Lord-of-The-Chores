@@ -47,6 +47,7 @@ public class QuestBoard {
 		
 		try(FileInputStream inFile = new FileInputStream(USER_CURRENCY_FILE_OBJECT)) {
 			properties.load(inFile);
+			inFile.close();	//close file
 		}
 		catch(FileNotFoundException e) {
 			System.out.println(USER_CURRENCY_FILE_NAME + ": file not found");

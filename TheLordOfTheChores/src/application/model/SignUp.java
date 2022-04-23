@@ -78,10 +78,15 @@ public class SignUp {
 	}
 	
 	private void initializeCredentials(String username, String password) throws IOException {
+		// load password file
 		try(FileOutputStream outFile = new FileOutputStream(USER_PASSWORD_FILE_OBJECT, false)) {
+			//put username and password in has map
 			userPassHashMap.put(username, password);
+			//put hash map in properties file
 			properties.putAll(userPassHashMap);
+			//store in properties file
 			properties.store(outFile, null);
+			//close file
 			outFile.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -93,6 +98,7 @@ public class SignUp {
 		
 		try(FileInputStream inFile = new FileInputStream(USER_CURRENCY_FILE_OBJECT)) {
 			properties.load(inFile); // Load file data
+			inFile.close();	//close file
 		}
 		catch(FileNotFoundException e) {
 			System.out.println(USER_CURRENCY_FILE_NAME + ": file does not exist");

@@ -158,6 +158,7 @@ public class Inventory {
 		// load equipped items file
 		try(FileInputStream inFile = new FileInputStream(ITEMS_EQUIPPED_FILE_OBJECT)) {
 			properties.load(inFile); // Load file data	
+			inFile.close();	//close file
 		}
 		//File not found exception catch
 		catch(FileNotFoundException e) {

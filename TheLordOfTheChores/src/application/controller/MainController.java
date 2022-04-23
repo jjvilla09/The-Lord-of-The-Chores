@@ -92,30 +92,39 @@ public class MainController implements Initializable {
     //display information when screen is open up
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		//load current user properties file
 		try(FileInputStream inFile = new FileInputStream(new File("currentUser.properties"))) {
 			properties.load(inFile);
 			inFile.close();
 		}
+		//file not found exception catch
 		catch(FileNotFoundException e) {
 			System.out.println("Fatal Error: File not found");
 			e.printStackTrace();
 		}
+		// IO exception catch
 		catch(IOException e2) {
 			System.out.println("Fatal Error: IOException");
 			e2.printStackTrace();
 		}
 		
 		try {
+			//get current user and add to string
 			String username = shopModel.getCurrentUser();
+			//get currency and add to string
 			String currency = String.valueOf(shopModel.getCurrency(username));
+			//display currency
 			currencyLabel.setText(currency);
+		//file not found exception
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+		//IO exception
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		//get the current user
 		Enumeration<Object> test = properties.elements();
+		//display current user
 		currentUserLabel.setText("Current User: " + test.nextElement().toString());
 	}
 }
