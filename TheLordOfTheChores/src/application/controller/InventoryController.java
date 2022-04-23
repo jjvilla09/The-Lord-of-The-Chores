@@ -104,32 +104,37 @@ public class InventoryController implements Initializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	Image image;
-    	String imFile1;
-    	String imFile2;
-    	String imFile3;
-    	String imFile4;
-    	String imFile5;
+    	Image image;	//image class
+    	String imFile1;	// helmet file
+    	String imFile2;	//chest piece file
+    	String imFile3;	//gauntlet file
+    	String imFile4;	//legging file
+    	String imFile5;	//boots
+    	//if helmet is not empty get image
     	if(helmet != null) {
     	imFile1 = "data/" + helmet + ".png";
     	image = new Image(new FileInputStream(imFile1));
 		helmetIM.setImage(image);
-    	}
+    	}  	
+    	//if chest piece is not empty get image
     	if(chest != null) {
     		imFile2 = "data/" + chest + ".png";
     		image = new Image(new FileInputStream(imFile2));
 			chestIM.setImage(image);
         	}
+    	//if gauntlets are not empty get image
     	if(gaunt != null) {
     		imFile3 = "data/" + gaunt + ".png";
     		image = new Image(new FileInputStream(imFile3));
     		gauntletsIM.setImage(image);
         	}
+    	//if leggings are not empty get image
     	if(leg != null) {
     		imFile4 = "data/" + leg + ".png";
     		image = new Image(new FileInputStream(imFile4));
 			legsIM.setImage(image);
         	}
+    	//if boots are not empty get image
     	if(boot != null) {
     		imFile5 = "data/" + boot + ".png";
     		image = new Image(new FileInputStream(imFile5));

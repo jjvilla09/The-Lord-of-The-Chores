@@ -15,11 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
-/**
- * @author Isaac Nguyen (rrg053)
- * UTSA CS 3443 - Lab 4
- * Spring 2022
- */
 // Main class that extends Application which JavaFX application extends
 public class Main extends Application {
 	@Override

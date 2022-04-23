@@ -15,7 +15,7 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Label fx:id="invalid" alignment="CENTER" layoutX="231.0" layoutY="225.0" prefHeight="17.0" prefWidth="139.0" textFill="RED" />
+      <Label fx:id="invalid" alignment="CENTER" layoutX="199.0" layoutY="225.0" prefHeight="17.0" prefWidth="202.0" textFill="RED" />
       <Button layoutX="266.0" layoutY="245.0" mnemonicParsing="false" onAction="#SignUpHandle" prefHeight="31.0" prefWidth="69.0" text="Sign Up">
          <font>
             <Font name="System Bold" size="12.0" />
