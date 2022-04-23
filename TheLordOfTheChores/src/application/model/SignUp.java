@@ -133,6 +133,7 @@ public class SignUp {
 		
 		try(FileInputStream inFile = new FileInputStream(INVENTORY_FILE_OBJECT)) {
 			properties.load(inFile); // Load file data	
+			inFile.close();
 		}
 		catch(FileNotFoundException e) {
 			System.out.println(INVENTORY_FILE_OBJECT + ": File does not exist");
