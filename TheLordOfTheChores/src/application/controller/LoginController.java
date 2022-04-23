@@ -1,3 +1,9 @@
+/**
+ * Author: Joshua Villarreal (uut835)
+ * File: LoginController.java
+ * Purpose: Holds functions to be used for Login.fxml
+ */
+
 package application.controller;
 
 

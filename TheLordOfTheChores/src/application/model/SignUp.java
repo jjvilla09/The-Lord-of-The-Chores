@@ -1,3 +1,9 @@
+/**
+ * Author: Joshua Villarreal (uut835)
+ * File: SignUp.java
+ * Purpose: Holds logical operations to be used in SignUp.fxml
+ */
+
 package application.model;
 
 import java.io.File;
@@ -77,6 +83,13 @@ public class SignUp {
 		return true;
 	}
 	
+	/**
+	 * initializes credentials in the file "userPassword.properties"
+	 * 
+	 * @param username
+	 * @param password
+	 * @throws IOException
+	 */
 	private void initializeCredentials(String username, String password) throws IOException {
 		// load password file
 		try(FileOutputStream outFile = new FileOutputStream(USER_PASSWORD_FILE_OBJECT, false)) {
@@ -92,7 +105,13 @@ public class SignUp {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * initializes currency in the file "userCurrency.properties"
+	 * 
+	 * @param username
+	 * @throws IOException
+	 */
 	private void initializeCurrency(String username) throws IOException {
 		properties.clear(); // Starts from scratch
 		
@@ -114,7 +133,13 @@ public class SignUp {
 		}
 	}
 
-	public static void initializeStarterGear(String username) throws IOException{
+	/**
+	 * initializes credentials in the file "itemsEquipped.properties"
+	 * 
+	 * @param username
+	 * @throws IOException
+	 */
+	public static void initializeStarterGear(String username) throws IOException {
 		properties.clear(); // Starts from scratch
 		
 		try(FileInputStream inFile = new FileInputStream(ITEMS_EQUIPPED_FILE_OBJECT)) {
@@ -134,7 +159,13 @@ public class SignUp {
 		}
 	}
 	
-	public static void initializeInventory(String username) throws IOException{
+	/**
+	 * initializes inventory in the file "inventory.properties"
+	 * 
+	 * @param username
+	 * @throws IOException
+	 */
+	public static void initializeInventory(String username) throws IOException {
 		properties.clear(); // Starts from scratch
 		
 		try(FileInputStream inFile = new FileInputStream(INVENTORY_FILE_OBJECT)) {
