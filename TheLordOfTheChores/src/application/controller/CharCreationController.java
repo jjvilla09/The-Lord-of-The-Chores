@@ -20,39 +20,48 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-
+// controller for character creation class
 public class CharCreationController {
 	
+	
+	@FXML private Button orc;	// orc button
+	
+	@FXML private Button createNewCharButton;	//create new char button
 
-	@FXML private Button orc;
+	@FXML private TextArea text;	//text text area
 	
-	@FXML private Button createNewCharButton;
+	@FXML private Button halfling;	//halfing button
 
-	@FXML private TextArea text;
+	@FXML private AnchorPane charCreationPane;	//anchor pane
 	
-	@FXML private Button halfling;
-
-	@FXML private AnchorPane charCreationPane;
+	@FXML private Button human;	//human button
 	
-	@FXML private Button human;
+	@FXML private Button elf;	//elf button
 	
-	@FXML private Button elf;
+	@FXML private Button wizard;	//wizard button
 	
-	@FXML private Button wizard;
+	@FXML private Button dwarf;	//dward button
 	
-	@FXML private Button dwarf;
-	
+	//take you to login screen
 	@FXML
 	void createNewChar(ActionEvent event) throws IOException {
+		//get login url
 		URL url = new File("src/Login.fxml").toURI().toURL();
+		//load pane
 		charCreationPane = FXMLLoader.load(url);
+		//create scene
 		Scene scene = new Scene(charCreationPane, 600, 400);
+		//create stage
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		//set scene
 		window.setScene(scene);
+		//set title
 		window.setTitle("The Lord of the Chores - Login");
+		// display scene
 		window.show();
 	}
 	
+	//display halfing text when button pressed
 	@FXML
 	void halflingB(ActionEvent event) {
 		text.clear();
@@ -63,7 +72,7 @@ public class CharCreationController {
 				+ " Excelling in short term goals and \n" 
 				+ " keeping a very positive outlook on the near future.");
 	    }
-	
+	//display human text when button pressed
 	@FXML
 	void humanB(ActionEvent event) {
 		text.clear();
@@ -73,7 +82,7 @@ public class CharCreationController {
 				+ " Hardworking and able to multitask very well.\n Humans have a very"
 				+ " high self efficacy."); 
 	    }
-	
+	//display elf text when button pressed
 	@FXML
 	void elfB(ActionEvent event) {
 		text.clear();
@@ -83,7 +92,7 @@ public class CharCreationController {
 				+ " foresight.\n Allowing them to excel in planning and"
 				+ " completing long term goals.");
 	    }
-	
+	//display orc text when button pressed
 	@FXML
 	void orcB(ActionEvent event) {
 		text.clear();
@@ -94,7 +103,7 @@ public class CharCreationController {
 				+ "or planning ahead.\n But very good at taking down one task"
 				+ "at a time and completing checklist.");
 	    }
-	
+	//display dwarf text when button pressed
 	@FXML
 	void dwarfB(ActionEvent event) {
 		text.clear();
@@ -105,7 +114,7 @@ public class CharCreationController {
 				+ " The dwarf excels in group work and cares that the\n"
 				+ " overall goal is completed." );
 	    }
-	
+	//display human text when button pressed
 	@FXML
 	void wizardB(ActionEvent event) {
 		text.clear();

@@ -1,6 +1,10 @@
 package application.controller;
 
-
+/**
+ * Author: Isaac Nguyen (rrg053)
+ * File: LoginController.java
+ * Purpose: Login.fxml functions
+ */
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;

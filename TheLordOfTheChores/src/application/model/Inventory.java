@@ -10,9 +10,9 @@ import java.util.Properties;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 /**
- * @author Isaac Nguyen (rrg053)
- * UTSA CS 3443 - Lab 4
- * Spring 2022
+ * Author: Isaac Nguyen (rrg053)
+ * File: Inventory.java
+ * Purpose: Inventory functions
  */
 
 //Inventory class to see what equipment user has in their inventory and be able to equip them
