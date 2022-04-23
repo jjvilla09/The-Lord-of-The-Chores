@@ -26,8 +26,8 @@ public class SignUp {
 	private static final File USER_PASSWORD_FILE_OBJECT = new File(USER_PASSWORD_FILE_NAME);
 	private static final File ITEMS_EQUIPPED_FILE_OBJECT = new File(ITEMS_EQUIPPED_FILE_NAME);
 	private static final File USER_CURRENCY_FILE_OBJECT = new File(USER_CURRENCY_FILE_NAME);
-	private static final String STARTER_KIT = "NONE,StarterChestpiece,NONE,StarterLeggings,NONE";
-	private static final String STARTER_INVENTORY = "StarterChestpiece,StarterLeggings";
+	private static final String STARTER_KIT = "NONE,StarterChestArmor v2,NONE,StarterLeggings v2,NONE";
+	private static final String STARTER_INVENTORY = "StarterChestArmor v2,StarterLeggings v2";
 	
 	/**
 	 * Loads the user input (username and password) into a file using Properties
