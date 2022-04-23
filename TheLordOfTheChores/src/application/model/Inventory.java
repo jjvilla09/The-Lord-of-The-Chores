@@ -177,9 +177,5 @@ public class Inventory {
 		}
 	}
 
-	public void getAmourImage() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

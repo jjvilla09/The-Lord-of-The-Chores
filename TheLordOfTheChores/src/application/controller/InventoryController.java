@@ -118,22 +118,22 @@ public class InventoryController implements Initializable{
     	if(chest != null) {
     		imFile2 = "data/" + chest + ".png";
     		image = new Image(new FileInputStream(imFile2));
-			helmetIM.setImage(image);
+			chestIM.setImage(image);
         	}
     	if(gaunt != null) {
     		imFile3 = "data/" + gaunt + ".png";
     		image = new Image(new FileInputStream(imFile3));
-			helmetIM.setImage(image);
+    		gauntletsIM.setImage(image);
         	}
     	if(leg != null) {
     		imFile4 = "data/" + leg + ".png";
     		image = new Image(new FileInputStream(imFile4));
-			helmetIM.setImage(image);
+			legsIM.setImage(image);
         	}
     	if(boot != null) {
     		imFile5 = "data/" + boot + ".png";
     		image = new Image(new FileInputStream(imFile5));
-			helmetIM.setImage(image);
+			bootsIM.setImage(image);
         	}
 
     }
