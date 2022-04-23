@@ -65,5 +65,10 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
+      <ImageView fx:id="helmetIM" fitHeight="105.0" fitWidth="117.0" layoutX="509.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="chestIM" fitHeight="105.0" fitWidth="117.0" layoutX="509.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="legsIM" fitHeight="105.0" fitWidth="117.0" layoutX="509.0" layoutY="406.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="bootsIM" fitHeight="105.0" fitWidth="117.0" layoutX="509.0" layoutY="529.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="gauntletsIM" fitHeight="105.0" fitWidth="117.0" layoutX="327.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

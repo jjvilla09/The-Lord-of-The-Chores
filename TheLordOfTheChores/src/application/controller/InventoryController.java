@@ -7,8 +7,10 @@
 package application.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,6 +23,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -38,6 +42,18 @@ public class InventoryController implements Initializable{
     private ListView<String> legList;//list view of leggings
     @FXML
     private ListView<String> bootList;//list view of boots
+    
+    
+    @FXML
+    private ImageView helmetIM;	//helmet image
+    @FXML
+    private ImageView chestIM;	//chest piece image
+    @FXML
+    private ImageView gauntletsIM;	//guantlet image
+    @FXML
+    private ImageView legsIM;	//leggings image
+    @FXML
+    private ImageView bootsIM;	//boots image
     
     @FXML
     private Label equipSuc;// label display that equipment has ben equipped
@@ -70,14 +86,14 @@ public class InventoryController implements Initializable{
     }
     //when user clicks on equip it should equip items selected
     @FXML
-    void equipItemHandle(ActionEvent event) {
+    void equipItemHandle(ActionEvent event) throws FileNotFoundException{
     	//get equipment selected by user and store them as strings
     	String helmet = helmetList.getSelectionModel().getSelectedItem();
     	String chest = chestList.getSelectionModel().getSelectedItem();
     	String gaunt = gauntList.getSelectionModel().getSelectedItem();
     	String leg = legList.getSelectionModel().getSelectedItem();
     	String boot = bootList.getSelectionModel().getSelectedItem();
-
+    	
     	try {
     		//call equipItem method to equip armor
 			in.equipItem(helmet, chest, gaunt, leg, boot);
@@ -88,6 +104,38 @@ public class InventoryController implements Initializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	Image image;
+    	String imFile1;
+    	String imFile2;
+    	String imFile3;
+    	String imFile4;
+    	String imFile5;
+    	if(helmet != null) {
+    	imFile1 = "data/" + helmet + ".png";
+    	image = new Image(new FileInputStream(imFile1));
+		helmetIM.setImage(image);
+    	}
+    	if(chest != null) {
+    		imFile2 = "data/" + chest + ".png";
+    		image = new Image(new FileInputStream(imFile2));
+			helmetIM.setImage(image);
+        	}
+    	if(gaunt != null) {
+    		imFile3 = "data/" + gaunt + ".png";
+    		image = new Image(new FileInputStream(imFile3));
+			helmetIM.setImage(image);
+        	}
+    	if(leg != null) {
+    		imFile4 = "data/" + leg + ".png";
+    		image = new Image(new FileInputStream(imFile4));
+			helmetIM.setImage(image);
+        	}
+    	if(boot != null) {
+    		imFile5 = "data/" + boot + ".png";
+    		image = new Image(new FileInputStream(imFile5));
+			helmetIM.setImage(image);
+        	}
+
     }
     //display information when screen is open up
 	@Override
@@ -108,7 +156,8 @@ public class InventoryController implements Initializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		//InputStream imFile = new FileInputStream("data/");
+		//helmet.setImage();
 
 	}
 
