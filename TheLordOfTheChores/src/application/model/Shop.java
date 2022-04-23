@@ -12,8 +12,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
 /**
+ * Shop.java contains all the logical operations used in ShopController.java.
+ * 
  * @author Joshua Villarreal (uut835)
- *
  */
 
 public class Shop {
@@ -103,6 +104,13 @@ public class Shop {
 		}
 	}
 	
+	/**
+	 * Subtracts the user's currency and updates "userCurrency.properties" file.
+	 * 
+	 * @param username
+	 * @param amountDeduced
+	 * @throws IOException
+	 */
 	public void deductCurrency(String username, int amountDeduced) throws IOException {
 		properties.clear();
 		
@@ -124,8 +132,12 @@ public class Shop {
 	}
 	
 	/**
-	 * If current users currency is equal to or greater than item price, them add item to inventory.properties file.
-	 * @throws IOException 
+	 * If the user is determined to have enough currency, then 
+	 * deduct 100 currency, add KnightChestpiece to inventory, and update the 
+	 * top-left currency label seen by the user.
+	 * 
+	 * @param currencyLabel
+	 * @throws IOException
 	 */
 	public void buyKnightChestpiece(Label currencyLabel) throws IOException {
 		String username = getCurrentUser();
@@ -150,7 +162,15 @@ public class Shop {
 			a.showAndWait();
 		}
 	}
-
+	
+	/**
+	 * If the user is determined to have enough currency, then 
+	 * deduct 100 currency, add KnightBoots to inventory, and update the 
+	 * top-left currency label seen by the user.
+	 * 
+	 * @param currencyLabel
+	 * @throws IOException
+	 */
 	public void buyKnightBoots(Label currencyLabel) throws IOException {
 		String username = getCurrentUser();
 		int currency = getCurrency(username);
@@ -174,7 +194,15 @@ public class Shop {
 			a.showAndWait();
 		}
 	}
-
+	
+	/**
+	 * If the user is determined to have enough currency, then 
+	 * deduct 100 currency, add KnightHelmet to inventory, and update the 
+	 * top-left currency label seen by the user.
+	 * 
+	 * @param currencyLabel
+	 * @throws IOException
+	 */
 	public void buyKnightHelmet(Label currencyLabel) throws IOException {
 		String username = getCurrentUser();
 		int currency = getCurrency(username);
@@ -198,7 +226,15 @@ public class Shop {
 			a.showAndWait();
 		}
 	}
-
+	
+	/**
+	 * If the user is determined to have enough currency, then 
+	 * deduct 100 currency, add KnightLeggings to inventory, and update the 
+	 * top-left currency label seen by the user.
+	 * 
+	 * @param currencyLabel
+	 * @throws IOException
+	 */
 	public void buyKnightLeggings(Label currencyLabel) throws IOException {
 		String username = getCurrentUser();
 		int currency = getCurrency(username);
@@ -222,7 +258,15 @@ public class Shop {
 			a.showAndWait();
 		}
 	}
-
+	
+	/**
+	 * If the user is determined to have enough currency, then 
+	 * deduct 100 currency, add MercenaryChestpiece to inventory, and update the 
+	 * top-left currency label seen by the user.
+	 * 
+	 * @param currencyLabel
+	 * @throws IOException
+	 */
 	public void buyMercenaryChestpiece(Label currencyLabel) throws IOException {
 		String username = getCurrentUser();
 		int currency = getCurrency(username);
@@ -246,7 +290,15 @@ public class Shop {
 			a.showAndWait();
 		}
 	}
-
+	
+	/**
+	 * If the user is determined to have enough currency, then 
+	 * deduct 1000 currency, add SpartanHelmet to inventory, and update the 
+	 * top-left currency label seen by the user.
+	 * 
+	 * @param currencyLabel
+	 * @throws IOException
+	 */
 	public void buySpartanHelmet(Label currencyLabel) throws IOException {
 		String username = getCurrentUser();
 		int currency = getCurrency(username);
@@ -270,7 +322,14 @@ public class Shop {
 			a.showAndWait();
 		}
 	}
-
+	
+	/**
+	 * Updates the currency label by finding the user's old currency
+	 * and setting it to new currency.
+	 * 
+	 * @param currencyLabel
+	 * @throws IOException
+	 */
 	public void updateCurrency(Label currencyLabel) {
 		try {
 			String username = getCurrentUser();
@@ -283,8 +342,11 @@ public class Shop {
 		}
 	}
 	
+	/**
+	 * Displays the sold out message.
+	 */
 	public void showSoldOutMessage() {
-		a.setContentText("Sorry, but the item you want to buy is sold out. Please try again later.");
+		a.setContentText("Sorry, but the item you want to buy is sold out.\n Please try again later.");
 		a.showAndWait();
 	}
 }
