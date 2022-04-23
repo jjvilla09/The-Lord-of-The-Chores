@@ -1,3 +1,9 @@
+/**
+ * Author: Tony Formbly
+ * File: CharCreationController.java
+ * Purpose: This class controls the Character Creation screen, CharCreation.fxml (Not finished)
+ */
+
 package application.controller;
 
 import java.io.File;
