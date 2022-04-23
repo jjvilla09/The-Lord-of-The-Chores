@@ -151,7 +151,7 @@ public class Shop {
 			
 			if(bt.equals(ButtonType.OK)) {
 				deductCurrency(username, 100);
-				addToInventory(username, ",KnightChestpiece");
+				addToInventory(username, ",CommonChestpiece v2");
 				updateCurrency(currencyLabel);
 			} else {
 				a.setContentText("Purchase Canceled");
@@ -183,7 +183,7 @@ public class Shop {
 			
 			if(bt.equals(ButtonType.OK)) {
 				deductCurrency(username, 100);
-				addToInventory(username, ",KnightBoots");
+				addToInventory(username, ",CommonBoots v2");
 				updateCurrency(currencyLabel);
 			} else {
 				a.setContentText("Purchase Canceled");
@@ -215,7 +215,7 @@ public class Shop {
 			
 			if(bt.equals(ButtonType.OK)) {
 				deductCurrency(username, 100);
-				addToInventory(username, ",KnightHelmet");
+				addToInventory(username, ",CommonHelmet v2");
 				updateCurrency(currencyLabel);
 			} else {
 				a.setContentText("Purchase Canceled");
@@ -247,7 +247,7 @@ public class Shop {
 			
 			if(bt.equals(ButtonType.OK)) {
 				deductCurrency(username, 100);
-				addToInventory(username, ",KnightLeggings");
+				addToInventory(username, ",CommonLeggings v2");
 				updateCurrency(currencyLabel);
 			} else {
 				a.setContentText("Purchase Canceled");
@@ -279,7 +279,7 @@ public class Shop {
 			
 			if(bt.equals(ButtonType.OK)) {
 				deductCurrency(username, 100);
-				addToInventory(username, ",MercenaryChestpiece");
+				addToInventory(username, ",CommonChestArmor");
 				updateCurrency(currencyLabel);
 			} else {
 				a.setContentText("Purchase Canceled");
@@ -311,7 +311,7 @@ public class Shop {
 			
 			if(bt.equals(ButtonType.OK)) {
 				deductCurrency(username, 1000);
-				addToInventory(username, ",SpartanHelmet");
+				addToInventory(username, ",RareHelmet");
 				updateCurrency(currencyLabel);
 			} else {
 				a.setContentText("Puchase Canceled");
