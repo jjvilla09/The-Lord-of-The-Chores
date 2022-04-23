@@ -1,6 +1,7 @@
 /**
- * Class: Quest.java
- * Function: holds variables in Quest object
+ * Author: Nikhil Kapoor (yct482)
+ * File: Quest.java
+ * Purpose: this class is the Quest object, that will be created via an ArrayList of quests
  */
 package application.model;
 

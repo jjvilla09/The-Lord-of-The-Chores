@@ -1,3 +1,9 @@
+/**
+ * Author: Joshua Villarreal (uut835)
+ * File: ShopController.java
+ * Purpose: Holds functions to be used for Shop.fxml (ex: dynamically updating the user's currency after buying items)
+ */
+
 package application.controller;
 
 import java.io.File;

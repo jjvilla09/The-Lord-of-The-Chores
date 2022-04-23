@@ -1,3 +1,9 @@
+/**
+ * Author: Nikhil Kapoor (yct482)
+ * File: MainController.java
+ * Purpose: Holds functionality for the Main.fxml screen (ex: transitioning into the different screens)
+ */
+
 package application.controller;
 
 import java.io.File;

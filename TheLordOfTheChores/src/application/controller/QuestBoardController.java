@@ -1,5 +1,5 @@
 /**
- * Creator: Nikhil Kapoor (yct482)
+ * Author: Nikhil Kapoor (yct482)
  * File: QuestBoardController.java
  * Purpose: Controls the Quest Board scene, using QuestBoard class objects to allow
  * users to create quests, complete them, and receive rewards.

@@ -1,6 +1,7 @@
 /**
- * Class: QuestBoard.java
- * Purpose: holds functions that the Quest class will be involved in
+ * Author: Nikhil Kapoor (yct482)
+ * File: QuestBoard.java
+ * Purpose: holds functions for the QuestBoardController class to use for the Quest Board's functionality
  */
 package application.model;
 

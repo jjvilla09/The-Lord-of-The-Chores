@@ -1,3 +1,9 @@
+/**
+ * Author: Isaac Nguyen (rrg053)
+ * File: Main.java
+ * Purpose: Holds functionality to launch the application.
+ */
+
 package application;
 	
 import java.io.File;

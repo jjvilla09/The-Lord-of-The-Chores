@@ -1,3 +1,9 @@
+/**
+ * Author: Isaac Nguyen (rrg053)
+ * File: InventoryController.java
+ * Purpose: Holds functionality of Inventory.fxml (ex: Listing the items equipped/not equipped)
+ */
+
 package application.controller;
 
 import java.io.File;

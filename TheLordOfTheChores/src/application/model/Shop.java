@@ -1,3 +1,10 @@
+/**
+ * Author: Joshua Villarreal (uut835)
+ * File: Shop.java
+ * Purpose: Model for ShopController: holds logic functions for ShopController (updating the user.txt file with 
+ * 			equipment, storing information about the user's currency, etc.)
+ */
+
 package application.model;
 
 import java.io.File;
