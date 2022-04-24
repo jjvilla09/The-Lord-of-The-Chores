@@ -27,103 +27,81 @@ import javafx.stage.Stage;
 
 //Controller class for the main screen
 public class MainController implements Initializable {
-
-
+	
     @FXML private AnchorPane mainPane;	//anchor pane
     @FXML private Label currentUserLabel;	//current user label
     @FXML private Label currencyLabel;	// currency label
     
     //create properties variable for properties class
     private Properties properties = new Properties();
+    
     //create object for Shop class
 	Shop shopModel = new Shop();
 	
 	//opens quest board scene when user click on quest board button
     @FXML
     void questBoardHandle(ActionEvent event) throws IOException {
-    	//gets url for quest board
     	URL url = new File("src/QuestBoard.fxml").toURI().toURL();
-    	//load pane
     	mainPane = FXMLLoader.load(url);
-    	//create scene
     	Scene scene = new Scene(mainPane);
-    	//create stage
     	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	//set scene
     	window.setScene(scene);
-    	//set title
     	window.setTitle("The Lord of the Chores - Quest Board");
-    	//display scene
     	window.show();
     }
     
     //opens inventory scene when user click on quest board button
     @FXML
     void inventoryHandle(ActionEvent event) throws IOException {
-    	//gets url for inventory
     	URL url = new File("src/Inventory.fxml").toURI().toURL();
-    	//load pane
   	   	mainPane = FXMLLoader.load(url);
-  	   	//create scene
        	Scene scene = new Scene(mainPane, 800, 800);
-       	//create stage
        	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-       	//set scene
        	window.setScene(scene);
-       	//display scene
        	window.show();
     }
+    
     //opens shop scene when user click on quest board button
     @FXML
     void shopHandle(ActionEvent event) throws IOException {
-    	//gets url for shop
     	URL url = new File("src/Shop.fxml").toURI().toURL();
-    	//load pane
    		mainPane = FXMLLoader.load(url);
-   		//create scene
     	Scene scene = new Scene(mainPane, 800, 800);
-    	//create stage
     	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	//set scene
     	window.setScene(scene);
-    	//display scene
     	window.show();
     }
+    
     //display information when screen is open up
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		//load current user properties file
 		try(FileInputStream inFile = new FileInputStream(new File("currentUser.properties"))) {
 			properties.load(inFile);
 			inFile.close();
 		}
-		//file not found exception catch
 		catch(FileNotFoundException e) {
 			System.out.println("Fatal Error: File not found");
 			e.printStackTrace();
 		}
-		// IO exception catch
 		catch(IOException e2) {
 			System.out.println("Fatal Error: IOException");
 			e2.printStackTrace();
 		}
 		
-		try {
-			//get current user and add to string
-			String username = shopModel.getCurrentUser();
-			//get currency and add to string
-			String currency = String.valueOf(shopModel.getCurrency(username));
-			//display currency
-			currencyLabel.setText(currency);
-		//file not found exception
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		//IO exception
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		//get current user and add to string
+		String username = shopModel.getCurrentUser();
+		
+		//get currency and add to string
+		String currency = String.valueOf(shopModel.getCurrency(username));
+		
+		//display currency
+		currencyLabel.setText(currency);
+		
 		//get the current user
 		Enumeration<Object> test = properties.elements();
+		
 		//display current user
 		currentUserLabel.setText("Current User: " + test.nextElement().toString());
 	}
