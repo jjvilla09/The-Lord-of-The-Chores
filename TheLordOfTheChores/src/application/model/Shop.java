@@ -13,16 +13,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
-/**
- * Shop.java contains all the logical operations used in ShopController.java.
- * 
- * @author Joshua Villarreal (uut835)
- */
 
 public class Shop {
 	private static final String CURRENT_USER_FILE_NAME = "currentUser.properties";
@@ -44,14 +38,20 @@ public class Shop {
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
 	 */
-	public int getCurrency(String username) throws FileNotFoundException, IOException {
+	public int getCurrency(String username) {
 		properties.clear();
 		
 		try(FileInputStream inFile = new FileInputStream(USER_CURRENCY_FILE_OBJECT)) {
 			properties.load(inFile);
+			inFile.close();
 		}
 		catch(FileNotFoundException e) {
 			System.out.println(USER_CURRENCY_FILE_NAME + ": file not found");
+			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(USER_CURRENCY_FILE_NAME + ": IO Exception found");
+			e2.printStackTrace();
 		}
 		
 		return Integer.parseInt((String) properties.get(username));
@@ -64,14 +64,20 @@ public class Shop {
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
 	 */
-	public String getCurrentUser() throws FileNotFoundException, IOException {
+	public String getCurrentUser() {
 		properties.clear();
 		
 		try(FileInputStream inFile = new FileInputStream(CURRENT_USER_FILE_OBJECT)) {
 			properties.load(inFile);
+			inFile.close();
 		}
 		catch(FileNotFoundException e) {
 			System.out.println(CURRENT_USER_FILE_NAME + ": file not found");
+			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(CURRENT_USER_FILE_NAME + ": IO Exception found");
+			e2.printStackTrace();
 		}
 		
 		for(String keys : properties.stringPropertyNames()) {
@@ -86,7 +92,7 @@ public class Shop {
 	 * 
 	 * @throws IOException 
 	 */
-	public void addToInventory(String username, String itemName) throws IOException {
+	public void addToInventory(String username, String itemName) {
 		properties.clear();
 		
 		try(FileInputStream inFile = new FileInputStream(INVENTORY_FILE_OBJECT)) {
@@ -95,11 +101,14 @@ public class Shop {
 		}
 		catch(FileNotFoundException e) {
 			System.out.println(INVENTORY_FILE_NAME + ": file not found");
+			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(INVENTORY_FILE_NAME + ": IO Exception found");
+			e2.printStackTrace();
 		}
 		
 		String newInventory = properties.get(username) + itemName;
-		
-		
 		
 		try(FileOutputStream outFile = new FileOutputStream(INVENTORY_FILE_OBJECT, false)) {
 			properties.replace(username, newInventory);
@@ -108,6 +117,11 @@ public class Shop {
 		}
 		catch(FileNotFoundException e) {
 			System.out.println(INVENTORY_FILE_NAME + ": file not found");
+			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(INVENTORY_FILE_NAME + ": IO Exception found");
+			e2.printStackTrace();
 		}
 	}
 	
@@ -118,7 +132,7 @@ public class Shop {
 	 * @param amountDeduced
 	 * @throws IOException
 	 */
-	public void deductCurrency(String username, int amountDeduced) throws IOException {
+	public void deductCurrency(String username, int amountDeduced) {
 		properties.clear();
 		
 		try(FileInputStream inFile = new FileInputStream(USER_CURRENCY_FILE_OBJECT)) {
@@ -127,6 +141,11 @@ public class Shop {
 		}
 		catch(FileNotFoundException e) {
 			System.out.println(USER_CURRENCY_FILE_NAME + ": file not found");
+			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(USER_CURRENCY_FILE_NAME + ": IO Exception found");
+			e2.printStackTrace();
 		}
 		
 		try(FileOutputStream outFile = new FileOutputStream(USER_CURRENCY_FILE_OBJECT, false)) {
@@ -135,7 +154,12 @@ public class Shop {
 			outFile.close();
 		}
 		catch(FileNotFoundException e) {
-			System.out.println(INVENTORY_FILE_NAME + ": file not found");
+			System.out.println(USER_CURRENCY_FILE_NAME + ": file not found");
+			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(USER_CURRENCY_FILE_NAME + ": IO Exception found");
+			e2.printStackTrace();
 		}
 	}
 	
@@ -147,11 +171,9 @@ public class Shop {
 	 * @param currencyLabel
 	 * @throws IOException
 	 */
-	public void buyKnightChestpiece(Label currencyLabel) throws IOException {
+	public void buyKnightChestpiece(Label currencyLabel) {
 		String username = getCurrentUser();
 		int currency = getCurrency(username);
-		
-		
 		
 		if(currency >= 100) {
 			a2.showAndWait();
@@ -179,12 +201,10 @@ public class Shop {
 	 * @param currencyLabel
 	 * @throws IOException
 	 */
-	public void buyKnightBoots(Label currencyLabel) throws IOException {
+	public void buyKnightBoots(Label currencyLabel) {
 		String username = getCurrentUser();
 		int currency = getCurrency(username);
 				
-		
-		
 		if(currency >= 100) {
 			a2.showAndWait();
 			ButtonType bt = a2.getResult();
@@ -211,12 +231,10 @@ public class Shop {
 	 * @param currencyLabel
 	 * @throws IOException
 	 */
-	public void buyKnightHelmet(Label currencyLabel) throws IOException {
+	public void buyKnightHelmet(Label currencyLabel) {
 		String username = getCurrentUser();
 		int currency = getCurrency(username);
 			
-		
-		
 		if(currency >= 100) {
 			a2.showAndWait();
 			ButtonType bt = a2.getResult();
@@ -243,12 +261,10 @@ public class Shop {
 	 * @param currencyLabel
 	 * @throws IOException
 	 */
-	public void buyKnightLeggings(Label currencyLabel) throws IOException {
+	public void buyKnightLeggings(Label currencyLabel) {
 		String username = getCurrentUser();
 		int currency = getCurrency(username);
 			
-		
-		
 		if(currency >= 100) {
 			a2.showAndWait();
 			ButtonType bt = a2.getResult();
@@ -275,12 +291,10 @@ public class Shop {
 	 * @param currencyLabel
 	 * @throws IOException
 	 */
-	public void buyMercenaryChestpiece(Label currencyLabel) throws IOException {
+	public void buyMercenaryChestpiece(Label currencyLabel) {
 		String username = getCurrentUser();
 		int currency = getCurrency(username);
 				
-		
-		
 		if(currency >= 100) {
 			a2.showAndWait();
 			ButtonType bt = a2.getResult();
@@ -307,12 +321,10 @@ public class Shop {
 	 * @param currencyLabel
 	 * @throws IOException
 	 */
-	public void buySpartanHelmet(Label currencyLabel) throws IOException {
+	public void buySpartanHelmet(Label currencyLabel) {
 		String username = getCurrentUser();
 		int currency = getCurrency(username);
 		
-		
-			
 		if(currency >= 1000) {
 			a2.showAndWait();
 			ButtonType bt = a2.getResult();
@@ -339,7 +351,7 @@ public class Shop {
 	 * @param currencyLabel
 	 * @throws IOException
 	 */
-	public void buyKnightGauntlets(Label currencyLabel) throws IOException {
+	public void buyKnightGauntlets(Label currencyLabel) {
 		String username = getCurrentUser();
 		int currency = getCurrency(username);
 		
@@ -369,15 +381,9 @@ public class Shop {
 	 * @throws IOException
 	 */
 	public void updateCurrency(Label currencyLabel) {
-		try {
-			String username = getCurrentUser();
-			String currency = String.valueOf(getCurrency(username));
-			currencyLabel.setText(currency);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String username = getCurrentUser();
+		String currency = String.valueOf(getCurrency(username));
+		currencyLabel.setText(currency);
 	}
 	
 	/**

@@ -34,7 +34,7 @@ public class Login {
 	 * 
 	 * @throws IOException
 	 */
-	public boolean loadLogin(String username, String password, Label incorrectLogin) throws IOException {
+	public boolean loadLogin(String username, String password, Label incorrectLogin) {
 		
 		// null/empty check
 		if( username == null || username.isEmpty() || password == null || password.isEmpty()) {
@@ -44,16 +44,19 @@ public class Login {
 		
 		try(FileInputStream inFile = new FileInputStream(USER_PASSWORD_FILE_OBJECT)) {
 			properties.load(inFile);
+			inFile.close();
 			
 			// Put objects from properties file into a locally created HashMap
 			for(String keys : properties.stringPropertyNames()) {
 				userPassHashMap.put(keys, properties.get(keys).toString());
 			}
-			
-			inFile.close();
 		}
 		catch(FileNotFoundException e) {
 			System.out.println(USER_PASSWORD_FILE_NAME + ": file does not exist");
+		}
+		catch(IOException e2) {
+			System.out.println(USER_PASSWORD_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 		
 		// Check that the username and password are correct
@@ -77,8 +80,9 @@ public class Login {
 	 * @param username
 	 * @throws IOException
 	 */
-	public static void initializeCurrentUser(String username) throws IOException {
-		properties.clear(); // properties HashMap still contains the mappings from userPassword.properties (on Line 42), so we must clear it. 
+	public static void initializeCurrentUser(String username) {
+		properties.clear(); // properties HashMap still contains the mappings from userPassword.properties (on Line 42), so we must clear it.
+		
 		try(FileOutputStream outFile = new FileOutputStream(CURRENT_USER_FILE_OBJECT, false)) {
 			currUser.put(username, username);
 			properties.putAll(currUser);
@@ -87,6 +91,10 @@ public class Login {
 		} catch (FileNotFoundException e) {
 			System.out.println(CURRENT_USER_FILE_NAME + ": file not found");
 			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(CURRENT_USER_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 	}
 }

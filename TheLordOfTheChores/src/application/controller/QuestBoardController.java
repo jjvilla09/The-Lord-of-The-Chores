@@ -4,14 +4,13 @@
  * Purpose: Controls the Quest Board scene, using QuestBoard class objects to allow
  * users to create quests, complete them, and receive rewards.
  */
+
 package application.controller;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import application.model.Quest;
 import application.model.QuestBoard;
 import application.model.Shop;
@@ -34,28 +33,15 @@ import javafx.stage.Stage;
 
 public class QuestBoardController implements Initializable {
 	
-	@FXML
-    private ChoiceBox<String> diffChoice; // -diffChoice: ChoiceBox<String>
-	
-	@FXML
-    private TextField questNameTF; // -questNameTF: TextField
-	
-	@FXML
-    private ListView<Quest> questList; // -questList: ListView<Quest>
-	
-	@FXML
-    private AnchorPane questBoardPane;	// -questBoardPane: AnchorPane
-	
-	@FXML
-    private ImageView toHomeImage, toHelpImage; // -toHomeImage, -toHelpImage: ImageView
-	
-	@FXML
-    private Button createNewQuestButton, completeQuestBtn; // -createNewQuestButton, -completeQuestBtn: Button
-	
-	@FXML
-	private Alert a = new Alert(AlertType.NONE); // -a: Alert
-	
+	@FXML private ChoiceBox<String> diffChoice;
+	@FXML private TextField questNameTF;
+	@FXML private ListView<Quest> questList;
+	@FXML private AnchorPane questBoardPane;
+	@FXML private ImageView toHomeImage, toHelpImage;
+	@FXML private Button createNewQuestButton, completeQuestBtn;
+	@FXML private Alert a = new Alert(AlertType.NONE);
 	private String[] diff = {"Easy", "Normal", "Hard"};
+	QuestBoard qb = new QuestBoard();
 	
 	// setting up quest ChoiceBox
 	@Override
@@ -66,26 +52,16 @@ public class QuestBoardController implements Initializable {
     @FXML
     void toHomeHandle(MouseEvent event) throws IOException {
     	if (event.getSource() == toHomeImage) {
-    	//get url file
     	URL url = new File("src/Main.fxml").toURI().toURL();
-    	//load pane
     	questBoardPane = FXMLLoader.load(url);
-    	//create new scene
     	Scene scene = new Scene(questBoardPane, 800, 800);
-    	//set stage
     	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	//set scene
     	window.setScene(scene);
-    	//window.setScene(scene);
-    	// QuestBoardBranch: set title
     	window.setTitle("The Lord of the Chores - Homepage");
-    	//display scene
     	window.show();
     	}
     }
     
-    QuestBoard qb = new QuestBoard();
-
     @FXML
     void createNewQuest(ActionEvent event) {
     	if (event.getSource() == createNewQuestButton) {
@@ -98,7 +74,6 @@ public class QuestBoardController implements Initializable {
 	    			a.showAndWait();
 	    		} else {
 	    			String[] v = { questNameTF.getText(), diffChoice.getValue() };
-	    			//QuestBoard qb = new QuestBoard();
 	    			questList.getItems().add(qb.createQuest(v));
 	    		}
     		}
@@ -108,18 +83,18 @@ public class QuestBoardController implements Initializable {
     					+ "fields before creating the quest.");
     			a.showAndWait();
     		}
-    	} // end of if
-    } // end of createNewQuest method
+    	} 
+    } 
     
     @FXML
-    void completeQuest(ActionEvent event) throws FileNotFoundException, IOException {
+    void completeQuest(ActionEvent event) {
     	if (event.getSource() == completeQuestBtn) {
     		System.out.println("completeQuestBtn pressed");
     		if (questList.getItems().isEmpty()) {
     			a.setAlertType(AlertType.ERROR);
     			a.setContentText("ERROR: No quest has been entered. Please create a quest before clicking on this.");
     			a.showAndWait();
-    		} // end of nested if
+    		} 
     		else {
     			int total = 0;
     			for (int i = 0; i < questList.getItems().size(); i++) {
@@ -157,6 +132,5 @@ public class QuestBoardController implements Initializable {
     		a.showAndWait();
     	}
     }
-
 }
 

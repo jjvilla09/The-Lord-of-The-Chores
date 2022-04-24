@@ -29,34 +29,48 @@ public class Inventory {
 	
 	//create properties variable for properties class
 	private Properties properties = new Properties();
+	
 	//HashMap for inventory
 	private HashMap<String, String> inventory = new HashMap<>();
 	
 	//gets the the currency of the user
-	public int getCurrency(String username) throws FileNotFoundException, IOException {
+	public int getCurrency(String username) {
 		properties.clear();
 		//load currency properties file
 		try(FileInputStream inFile = new FileInputStream(USER_CURRENCY_FILE_OBJECT)) {
 			properties.load(inFile);
+			inFile.close();
 		}
 		//FileNotFoundException catch
 		catch(FileNotFoundException e) {
 			System.out.println(USER_CURRENCY_FILE_NAME + ": file not found");
+			e.printStackTrace();
 		}
+		catch(IOException e2) {
+			System.out.println(USER_CURRENCY_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
+		}
+		
 		//return value 
 		return Integer.parseInt((String) properties.get(username));
 	}
 	
 	//gets the current user 
-	public String getCurrentUser() throws FileNotFoundException, IOException {
+	public String getCurrentUser() {
 		properties.clear(); // clear properties
 		//load current user file
 		try(FileInputStream inFile = new FileInputStream(CURRENT_USER_FILE_OBJECT)) {
 			properties.load(inFile);
+			inFile.close();
 		}
 		//FileNotFoundException catch
 		catch(FileNotFoundException e) {
 			System.out.println(CURRENT_USER_FILE_NAME + ": file not found");
+			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(CURRENT_USER_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 		
 		//get user
@@ -66,33 +80,29 @@ public class Inventory {
 		//otherwise return error
 		return "ERROR";
 	}
+	
 	//updated currency value
 	public void updateCurrency(Label currencyLabel) {
-		
-		try {
-			String username = getCurrentUser();//get the current user 
-			String currency = String.valueOf(getCurrency(username));//get current currency value
-			currencyLabel.setText(currency);//set new value to screen
-		//catch File not found exception
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		// catch IO exception
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String username = getCurrentUser();//get the current user 
+		String currency = String.valueOf(getCurrency(username));//get current currency value
+		currencyLabel.setText(currency);//set new value to screen
 	}
+	
 	//get Inventory items stored in inventory properties file
-	public void getInventory(ListView<String> helmetList, ListView<String> chestList, ListView<String> gauntList, ListView<String> legList, ListView<String> bootList) throws FileNotFoundException, IOException {
+	public void getInventory(ListView<String> helmetList, ListView<String> chestList, ListView<String> gauntList, ListView<String> legList, ListView<String> bootList) {
 		properties.clear(); // clear properties
-		
 		String user = getCurrentUser();//gets the current user
+		
 		//load inventory file
 		try(FileInputStream inFile = new FileInputStream(INVENTORY_FILE_OBJECT)) {
 			properties.load(inFile);
+			inFile.close();
+			
 			// add users name and inventory to HashMap
 			for(String keys : properties.stringPropertyNames()) {
 				inventory.put(keys, properties.get(keys).toString());
 			}
+			
 			String inv = inventory.get(user);// create inventory string to for user inventory
 			String split[] = inv.split(",");//split each item by the comma separating them
 			//go through each item and place them in their respective List
@@ -124,11 +134,16 @@ public class Inventory {
 		//File not found exception catch
 		catch(FileNotFoundException e) {
 			System.out.println(INVENTORY_FILE_NAME + ": file not found");
+			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(INVENTORY_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 		
 	}
 	// equip items selected by user
-	public void equipItem(String helmet,String chest,String gaunt,String leg,String boot)  throws IOException{
+	public void equipItem(String helmet,String chest,String gaunt,String leg,String boot) {
 		properties.clear(); // clear properties
 		
 		String user = getCurrentUser();	//get current user
@@ -163,6 +178,11 @@ public class Inventory {
 		//File not found exception catch
 		catch(FileNotFoundException e) {
 			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": File does not exist");
+			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 		
 		properties.put(user,equipment); // Store equipment into hash map
@@ -173,7 +193,12 @@ public class Inventory {
 			outFile.close();	//close file
 		//File not found exception catch
 		} catch (FileNotFoundException e) {
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": File does not exist");
 			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 	}
 
