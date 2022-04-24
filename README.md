@@ -17,3 +17,5 @@ There's no visual UI to show what the current user has equiped, but there is fun
 CharCreation.fxml and CharCreationController.java have not been implemented, but the .fxml file and the .java file have not been altered with.
 
 The classes are seperated into different packages: the "application" package holds the Main class and the .css file. The "application.controller" package holds the controller classes for the .fxml files, while the "application.model" package holds the classes that handle the logic behind the controller classes.
+
+Version: Java 8 or SceneBuilder 2
