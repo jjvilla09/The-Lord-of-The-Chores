@@ -146,6 +146,18 @@ public class ShopController implements Initializable {
     }
     
     /**
+     * Buys Knight's Gauntlets
+     * 
+     * @param event
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    @FXML
+    void buyKnightGauntletsHandle(MouseEvent event) throws FileNotFoundException, IOException {
+    	shopModel.buyKnightGauntlets(currencyLabel);
+    }
+    
+    /**
      * Prompts the user with sold out message
      * 
      * @param event

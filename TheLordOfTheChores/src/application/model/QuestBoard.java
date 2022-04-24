@@ -16,8 +16,6 @@ import java.util.Properties;
 public class QuestBoard {
 	
 	// Strings and File static objects for the properties class
-	private static final String CURRENT_USER_FILE_NAME = "currentUser.properties";
-	private static final File CURRENT_USER_FILE_OBJECT = new File(CURRENT_USER_FILE_NAME);
 	private final static String INVENTORY_FILE_NAME = "inventory.properties";
 	private static final String USER_CURRENCY_FILE_NAME = "userCurrency.properties";
 	private static final File USER_CURRENCY_FILE_OBJECT = new File(USER_CURRENCY_FILE_NAME);
