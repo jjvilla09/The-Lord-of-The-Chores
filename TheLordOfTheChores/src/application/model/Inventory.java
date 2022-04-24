@@ -1,3 +1,9 @@
+/**
+ * Author: Isaac Nguyen (rrg053)
+ * File: Inventory.java
+ * Purpose: Inventory functions
+ */
+
 package application.model;
 
 import java.io.File;
@@ -9,29 +15,24 @@ import java.util.HashMap;
 import java.util.Properties;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-/**
- * Author: Isaac Nguyen (rrg053)
- * File: Inventory.java
- * Purpose: Inventory functions
- */
 
 //Inventory class to see what equipment user has in their inventory and be able to equip them
 public class Inventory {
-	//properties files to store and retrieve user information
-	private static final String CURRENT_USER_FILE_NAME = "currentUser.properties";
-	private static final File CURRENT_USER_FILE_OBJECT = new File(CURRENT_USER_FILE_NAME);
-	private final static String INVENTORY_FILE_NAME = "inventory.properties";
-	private final static File INVENTORY_FILE_OBJECT = new File(INVENTORY_FILE_NAME);
-	private static final String USER_CURRENCY_FILE_NAME = "userCurrency.properties";
-	private static final File USER_CURRENCY_FILE_OBJECT = new File(USER_CURRENCY_FILE_NAME);
-	private static final String ITEMS_EQUIPPED_FILE_NAME = "itemsEquipped.properties";
-	private static final File ITEMS_EQUIPPED_FILE_OBJECT = new File(ITEMS_EQUIPPED_FILE_NAME);
-	
-	//create properties variable for properties class
+	private HashMap<String, String> inventory = new HashMap<>();
 	private Properties properties = new Properties();
 	
-	//HashMap for inventory
-	private HashMap<String, String> inventory = new HashMap<>();
+	// -------------- FILE NAMES -------------- //
+	private static final String CURRENT_USER_FILE_NAME = "currentUser.properties";
+	private final static String INVENTORY_FILE_NAME = "inventory.properties";
+	private static final String USER_CURRENCY_FILE_NAME = "userCurrency.properties";
+	private static final String ITEMS_EQUIPPED_FILE_NAME = "itemsEquipped.properties";
+	
+	// -------------- FILE OBJECTS -------------- //
+	private static final File CURRENT_USER_FILE_OBJECT = new File(CURRENT_USER_FILE_NAME);
+	private final static File INVENTORY_FILE_OBJECT = new File(INVENTORY_FILE_NAME);
+	private static final File USER_CURRENCY_FILE_OBJECT = new File(USER_CURRENCY_FILE_NAME);
+	private static final File ITEMS_EQUIPPED_FILE_OBJECT = new File(ITEMS_EQUIPPED_FILE_NAME);
+	
 	
 	//gets the the currency of the user
 	public int getCurrency(String username) {
@@ -131,9 +132,11 @@ public class Inventory {
 					bootList.getItems().add(split[i]);
 				}
 			}
+			
 			//close file
 			inFile.close();
 		}
+		
 		//File not found exception catch
 		catch(FileNotFoundException e) {
 			System.out.println(INVENTORY_FILE_NAME + ": file not found");
@@ -146,9 +149,9 @@ public class Inventory {
 		
 	}
 	
-	// equip items selected by user
+	//equip items selected by user
 	public void equipItem(String helmet,String chest,String gaunt,String leg,String boot) {
-		properties.clear(); // clear properties
+		properties.clear(); //clear properties
 		String user = getCurrentUser();	//get current user
 		String equipment;	//variable to hold string of all item
 		
@@ -181,10 +184,9 @@ public class Inventory {
 			properties.load(inFile); // Load file data	
 			inFile.close();	//close file
 		}
-		
 		//File not found exception catch
 		catch(FileNotFoundException e) {
-			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": File does not exist");
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": file does not exist");
 			e.printStackTrace();
 		}
 		catch(IOException e2) {
@@ -199,7 +201,7 @@ public class Inventory {
 			properties.store(outFile, null); // Store info in properties file
 			outFile.close();	//close file
 		} catch (FileNotFoundException e) {
-			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": File does not exist");
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": file does not exist");
 			e.printStackTrace();
 		}
 		catch(IOException e2) {

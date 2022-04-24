@@ -1,16 +1,11 @@
 /**
- * Author: Joshua Villarreal (uut835)
- * File: LoginController.java
- * Purpose: Holds functions to be used for Login.fxml
- */
-
-package application.controller;
-
-/**
  * Author: Isaac Nguyen (rrg053)
  * File: LoginController.java
  * Purpose: Login.fxml functions
  */
+
+package application.controller;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -29,12 +24,12 @@ import javafx.stage.Stage;
 //Controller for the login
 public class LoginController {
 
-	@FXML private TextField username;// username textfield
-    @FXML private PasswordField password;// password passwordfield
-    @FXML private Label incorrectLogin;// incorrect login label
-    @FXML private AnchorPane mainPane;// anchor pane
+	@FXML private TextField username;
+    @FXML private PasswordField password;
+    @FXML private Label incorrectLogin;
+    @FXML private AnchorPane mainPane;
     
-    Login loginModel = new Login();// object for Login class
+    Login loginModel = new Login();
     
     //handle login when user presses login button
     @FXML
@@ -44,19 +39,12 @@ public class LoginController {
 	    
 	    //if login is true then go to Home page
 	    if(loginModel.loadLogin(user, pass, incorrectLogin)) {
-	    	//get main url
 	    	URL url = new File("src/Main.fxml").toURI().toURL();
-	    	//load pane
 	    	mainPane = FXMLLoader.load(url);
-	    	//create scene
 	    	Scene scene = new Scene(mainPane, 800, 800);
-	    	//create stage
 	    	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	    	//set scene
 	    	window.setScene(scene);
-	    	//set title
 	    	window.setTitle("The Lord of the Chores - Homepage");
-	    	//display scene
 	    	window.show();    	 
 	    }
     }
@@ -64,19 +52,12 @@ public class LoginController {
     //sign up handle when user presses sign up button
     @FXML
     void signUpHandle(ActionEvent event) throws IOException {
-    	//get sign up url
     	URL url = new File("src/SignUp.fxml").toURI().toURL();
-    	//load pane
     	mainPane = FXMLLoader.load(url);
-    	//create scene
     	Scene scene = new Scene(mainPane, 600, 400);
-    	//create stage
     	Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    	//set scene
     	window.setScene(scene);
-    	//set title
     	window.setTitle("The Lord of the Chores - Sign Up");
-    	//display scene
     	window.show();
     }
 

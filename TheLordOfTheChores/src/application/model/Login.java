@@ -22,9 +22,11 @@ public class Login {
 	private static HashMap<String,String> currUser = new HashMap<>();
 	private static Properties properties = new Properties();
 	
-	// -------------- FILE STUFF -------------- //
+	// -------------- FILE NAMES -------------- //
 	private static final String USER_PASSWORD_FILE_NAME = "userPassword.properties";
 	private static final String CURRENT_USER_FILE_NAME = "currentUser.properties";
+	
+	// -------------- FILE OBJECTS -------------- //
 	private static final File CURRENT_USER_FILE_OBJECT = new File(CURRENT_USER_FILE_NAME);
 	private static final File USER_PASSWORD_FILE_OBJECT = new File(USER_PASSWORD_FILE_NAME);
 	
@@ -90,7 +92,6 @@ public class Login {
 			outFile.close();
 		} catch (FileNotFoundException e) {
 			System.out.println(CURRENT_USER_FILE_NAME + ": file not found");
-			e.printStackTrace();
 		}
 		catch(IOException e2) {
 			System.out.println(CURRENT_USER_FILE_NAME + ": io exception found");

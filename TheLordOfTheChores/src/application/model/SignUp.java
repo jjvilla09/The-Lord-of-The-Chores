@@ -18,20 +18,21 @@ import javafx.scene.control.Label;
 
 public class SignUp {
 	private HashMap<String, String> userPassHashMap = new HashMap<String,String>();
-	//private HashMap<String, String> currentUser = new HashMap<String, String>();
-	//private static HashMap<String, String> inventory = new HashMap<String, String>();
 	private static Properties properties = new Properties();
-	//private static Properties properties2 = new Properties();
 	
-	// -------------- FILE STUFF -------------- //
+	// -------------- FILE NAMES -------------- //
 	private static final String USER_PASSWORD_FILE_NAME = "userPassword.properties";
 	private static final String ITEMS_EQUIPPED_FILE_NAME = "itemsEquipped.properties";
 	private static final String USER_CURRENCY_FILE_NAME = "userCurrency.properties";
 	private static final String INVENTORY_FILE_NAME = "inventory.properties";
+	
+	// -------------- FILE OBJECTS -------------- //
 	private static final File INVENTORY_FILE_OBJECT = new File(INVENTORY_FILE_NAME);
 	private static final File USER_PASSWORD_FILE_OBJECT = new File(USER_PASSWORD_FILE_NAME);
 	private static final File ITEMS_EQUIPPED_FILE_OBJECT = new File(ITEMS_EQUIPPED_FILE_NAME);
 	private static final File USER_CURRENCY_FILE_OBJECT = new File(USER_CURRENCY_FILE_NAME);
+	
+	// -------------- STARTER ITEMS -------------- //
 	private static final String STARTER_KIT = "NONE,StarterChestArmor v2,NONE,StarterLeggings v2,NONE";
 	private static final String STARTER_INVENTORY = "StarterChestArmor v2,StarterLeggings v2";
 	
@@ -62,10 +63,9 @@ public class SignUp {
 		}
 		catch(FileNotFoundException e) {
 			System.out.println(USER_PASSWORD_FILE_NAME + ": file does not exist");
-			e.printStackTrace();
 		}
 		catch(IOException e2) {
-			System.out.println(USER_PASSWORD_FILE_NAME + ": IO Exception found");
+			System.out.println(USER_PASSWORD_FILE_NAME + ": io exception found");
 			e2.printStackTrace();
 		}
 		
@@ -94,7 +94,6 @@ public class SignUp {
 	 * 
 	 * @param username
 	 * @param password
-	 * @throws IOException
 	 */
 	private void initializeCredentials(String username, String password) {
 		
@@ -105,10 +104,9 @@ public class SignUp {
 			outFile.close();
 		} catch (FileNotFoundException e) {
 			System.out.println(USER_PASSWORD_FILE_NAME + ": file not found");
-			e.printStackTrace();
 		}
 		catch(IOException e2) {
-			System.out.println(USER_PASSWORD_FILE_NAME + ": IO Exception found");
+			System.out.println(USER_PASSWORD_FILE_NAME + ": io exception found");
 			e2.printStackTrace();
 		}
 	}
@@ -117,7 +115,6 @@ public class SignUp {
 	 * initializes currency in the file "userCurrency.properties"
 	 * 
 	 * @param username
-	 * @throws IOException
 	 */
 	private void initializeCurrency(String username) {
 		properties.clear(); // Starts from scratch
@@ -130,7 +127,7 @@ public class SignUp {
 			System.out.println(USER_CURRENCY_FILE_NAME + ": file does not exist");
 		}
 		catch(IOException e2) {
-			System.out.println(USER_CURRENCY_FILE_NAME + ": IO Exception found");
+			System.out.println(USER_CURRENCY_FILE_NAME + ": io exception found");
 			e2.printStackTrace();
 		}
 		
@@ -141,10 +138,9 @@ public class SignUp {
 			outFile.close();
 		} catch(FileNotFoundException e) {
 			System.out.println(USER_CURRENCY_FILE_NAME + ": file not found");
-			e.printStackTrace();
 		}
 		catch(IOException e2) {
-			System.out.println(USER_CURRENCY_FILE_NAME + ": IO Exception found");
+			System.out.println(USER_CURRENCY_FILE_NAME + ": io exception found");
 			e2.printStackTrace();
 		}
 	}
@@ -163,12 +159,10 @@ public class SignUp {
 			inFile.close();
 		}
 		catch(FileNotFoundException e) {
-			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": File does not exist");
-			e.printStackTrace();
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": file does not exist");
 		}
 		catch(IOException e2) {
-			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": IO Exception found");
-			e2.printStackTrace();
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": io exception found");
 		}
 		
 		properties.put(username, STARTER_KIT); // Store armor into hashmap
@@ -177,11 +171,10 @@ public class SignUp {
 			properties.store(outFile, null); // Store in properties file
 			outFile.close();
 		} catch (FileNotFoundException e) {
-			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": File not found");
-			e.printStackTrace();
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": file not found");
 		}
 		catch(IOException e2) {
-			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": IO Exception found");
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": io exception found");
 			e2.printStackTrace();
 		}
 	}
@@ -200,11 +193,10 @@ public class SignUp {
 			inFile.close();
 		}
 		catch(FileNotFoundException e) {
-			System.out.println(INVENTORY_FILE_NAME + ": File does not exist");
-			e.printStackTrace();
+			System.out.println(INVENTORY_FILE_NAME + ": file does not exist");
 		}
 		catch(IOException e2) {
-			System.out.println(INVENTORY_FILE_NAME + ": IO Exception found");
+			System.out.println(INVENTORY_FILE_NAME + ": io exception found");
 			e2.printStackTrace();
 		}
 		
@@ -214,11 +206,10 @@ public class SignUp {
 			properties.store(outFile, null); // Store in properties file
 			outFile.close();
 		} catch (FileNotFoundException e) {
-			System.out.println(INVENTORY_FILE_NAME + ": File not found");
-			e.printStackTrace();
+			System.out.println(INVENTORY_FILE_NAME + ": file not found");
 		}
 		catch(IOException e2) {
-			System.out.println(INVENTORY_FILE_NAME + ": IO Exception found");
+			System.out.println(INVENTORY_FILE_NAME + ": io exception found");
 			e2.printStackTrace();
 		}
 	}

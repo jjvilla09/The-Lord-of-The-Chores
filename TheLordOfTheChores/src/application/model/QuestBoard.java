@@ -14,13 +14,15 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class QuestBoard {
+	private Properties properties = new Properties();
 	
-	// Strings and File static objects for the properties class
+	// -------------- FILE NAME -------------- //
 	private static final String USER_CURRENCY_FILE_NAME = "userCurrency.properties";
+	
+	// -------------- FILE OBJECT -------------- //
 	private static final File USER_CURRENCY_FILE_OBJECT = new File(USER_CURRENCY_FILE_NAME);
 	
-	private Properties properties = new Properties(); // -properties: Properties
-	
+
 	// createQuest: creates a Quest object from a String array
 	public Quest createQuest(String[] metadata) {
 		String title = metadata[0]; // holds the title

@@ -19,16 +19,19 @@ import javafx.scene.control.Label;
 
 
 public class Shop {
-	private static final String CURRENT_USER_FILE_NAME = "currentUser.properties";
-	private static final File CURRENT_USER_FILE_OBJECT = new File(CURRENT_USER_FILE_NAME);
-	private final static String INVENTORY_FILE_NAME = "inventory.properties";
-	private final static File INVENTORY_FILE_OBJECT = new File(INVENTORY_FILE_NAME);
-	private static final String USER_CURRENCY_FILE_NAME = "userCurrency.properties";
-	private static final File USER_CURRENCY_FILE_OBJECT = new File(USER_CURRENCY_FILE_NAME);
 	Alert a = new Alert(Alert.AlertType.WARNING);
 	Alert a2 = new Alert(Alert.AlertType.CONFIRMATION);
-	
 	private Properties properties = new Properties();
+	
+	// -------------- FILE NAMES -------------- //
+	private static final String CURRENT_USER_FILE_NAME = "currentUser.properties";
+	private final static String INVENTORY_FILE_NAME = "inventory.properties";
+	private static final String USER_CURRENCY_FILE_NAME = "userCurrency.properties";
+	
+	// -------------- FILE OBJECTS -------------- //
+	private static final File CURRENT_USER_FILE_OBJECT = new File(CURRENT_USER_FILE_NAME);
+	private final static File INVENTORY_FILE_OBJECT = new File(INVENTORY_FILE_NAME);
+	private static final File USER_CURRENCY_FILE_OBJECT = new File(USER_CURRENCY_FILE_NAME);
 	
 	
 	/**
@@ -50,7 +53,7 @@ public class Shop {
 			e.printStackTrace();
 		}
 		catch(IOException e2) {
-			System.out.println(USER_CURRENCY_FILE_NAME + ": IO Exception found");
+			System.out.println(USER_CURRENCY_FILE_NAME + ": io exception found");
 			e2.printStackTrace();
 		}
 		
@@ -76,7 +79,7 @@ public class Shop {
 			e.printStackTrace();
 		}
 		catch(IOException e2) {
-			System.out.println(CURRENT_USER_FILE_NAME + ": IO Exception found");
+			System.out.println(CURRENT_USER_FILE_NAME + ": io exception found");
 			e2.printStackTrace();
 		}
 		
@@ -104,7 +107,7 @@ public class Shop {
 			e.printStackTrace();
 		}
 		catch(IOException e2) {
-			System.out.println(INVENTORY_FILE_NAME + ": IO Exception found");
+			System.out.println(INVENTORY_FILE_NAME + ": io exception found");
 			e2.printStackTrace();
 		}
 		
@@ -120,7 +123,7 @@ public class Shop {
 			e.printStackTrace();
 		}
 		catch(IOException e2) {
-			System.out.println(INVENTORY_FILE_NAME + ": IO Exception found");
+			System.out.println(INVENTORY_FILE_NAME + ": io exception found");
 			e2.printStackTrace();
 		}
 	}
@@ -144,7 +147,7 @@ public class Shop {
 			e.printStackTrace();
 		}
 		catch(IOException e2) {
-			System.out.println(USER_CURRENCY_FILE_NAME + ": IO Exception found");
+			System.out.println(USER_CURRENCY_FILE_NAME + ": io exception found");
 			e2.printStackTrace();
 		}
 		
@@ -158,7 +161,7 @@ public class Shop {
 			e.printStackTrace();
 		}
 		catch(IOException e2) {
-			System.out.println(USER_CURRENCY_FILE_NAME + ": IO Exception found");
+			System.out.println(USER_CURRENCY_FILE_NAME + ": io exception found");
 			e2.printStackTrace();
 		}
 	}

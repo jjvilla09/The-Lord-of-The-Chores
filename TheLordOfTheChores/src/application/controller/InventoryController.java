@@ -61,6 +61,7 @@ public class InventoryController implements Initializable {
     // when user clicks on equip it should equip items selected
     @FXML
     void equipItemHandle(ActionEvent event) throws FileNotFoundException{
+    	
     	//get equipment selected by user and store them as strings
     	String helmet = helmetList.getSelectionModel().getSelectedItem();
     	String chest = chestList.getSelectionModel().getSelectedItem();
@@ -71,6 +72,7 @@ public class InventoryController implements Initializable {
     	
 		// call equipItem method to equip armor
 		in.equipItem(helmet, chest, gaunt, leg, boot);
+		
 		// set text when equipment has been equipped
 		equipSuc.setText("Equipment has been equipped!");
 		
