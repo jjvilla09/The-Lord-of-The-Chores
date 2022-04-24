@@ -58,11 +58,13 @@ public class Inventory {
 	//gets the current user 
 	public String getCurrentUser() {
 		properties.clear(); // clear properties
+		
 		//load current user file
 		try(FileInputStream inFile = new FileInputStream(CURRENT_USER_FILE_OBJECT)) {
 			properties.load(inFile);
 			inFile.close();
 		}
+		
 		//FileNotFoundException catch
 		catch(FileNotFoundException e) {
 			System.out.println(CURRENT_USER_FILE_NAME + ": file not found");
@@ -77,6 +79,7 @@ public class Inventory {
 		for(String keys : properties.stringPropertyNames()) {
 			return keys;
 		}
+		
 		//otherwise return error
 		return "ERROR";
 	}
@@ -142,12 +145,13 @@ public class Inventory {
 		}
 		
 	}
+	
 	// equip items selected by user
 	public void equipItem(String helmet,String chest,String gaunt,String leg,String boot) {
 		properties.clear(); // clear properties
-		
 		String user = getCurrentUser();	//get current user
 		String equipment;	//variable to hold string of all item
+		
 		//if helmet not selected do not equip
 		if( helmet == null) {
 			helmet = "NONE";
@@ -168,13 +172,16 @@ public class Inventory {
 		if( boot == null) {
 			boot = "NONE";
 		}
+		
 		//add all equip items to one string with comma separators
 		equipment = helmet + "," + chest + "," + gaunt + "," + leg + "," + boot ;
+		
 		// load equipped items file
 		try(FileInputStream inFile = new FileInputStream(ITEMS_EQUIPPED_FILE_OBJECT)) {
 			properties.load(inFile); // Load file data	
 			inFile.close();	//close file
 		}
+		
 		//File not found exception catch
 		catch(FileNotFoundException e) {
 			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": File does not exist");
@@ -191,7 +198,6 @@ public class Inventory {
 		try(FileOutputStream outFile = new FileOutputStream(ITEMS_EQUIPPED_FILE_OBJECT, false)) {
 			properties.store(outFile, null); // Store info in properties file
 			outFile.close();	//close file
-		//File not found exception catch
 		} catch (FileNotFoundException e) {
 			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": File does not exist");
 			e.printStackTrace();
@@ -201,6 +207,4 @@ public class Inventory {
 			e2.printStackTrace();
 		}
 	}
-
-
 }
