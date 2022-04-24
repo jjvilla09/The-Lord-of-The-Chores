@@ -14,14 +14,15 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class QuestBoard {
+	private Properties properties = new Properties();
 	
-	// Strings and File static objects for the properties class
-	private final static String INVENTORY_FILE_NAME = "inventory.properties";
+	// -------------- FILE NAME -------------- //
 	private static final String USER_CURRENCY_FILE_NAME = "userCurrency.properties";
+	
+	// -------------- FILE OBJECT -------------- //
 	private static final File USER_CURRENCY_FILE_OBJECT = new File(USER_CURRENCY_FILE_NAME);
 	
-	private Properties properties = new Properties(); // -properties: Properties
-	
+
 	// createQuest: creates a Quest object from a String array
 	public Quest createQuest(String[] metadata) {
 		String title = metadata[0]; // holds the title
@@ -45,7 +46,7 @@ public class QuestBoard {
 	} // end of createQuest
 
 	// addCurrency: method for adding rewards to user currency
-	public void addCurrency(String username, int amountGained) throws IOException {
+	public void addCurrency(String username, int amountGained) {
 		properties.clear();
 		
 		// try/catch to retrieve the correct user
@@ -55,6 +56,11 @@ public class QuestBoard {
 		}
 		catch(FileNotFoundException e) {
 			System.out.println(USER_CURRENCY_FILE_NAME + ": file not found");
+			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(USER_CURRENCY_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 		
 		// try/catch to add the money to the properties file
@@ -64,7 +70,11 @@ public class QuestBoard {
 			outFile.close();
 		}
 		catch(FileNotFoundException e) {
-			System.out.println(INVENTORY_FILE_NAME + ": file not found");
+			System.out.println(USER_CURRENCY_FILE_NAME + ": file not found");
+		}
+		catch(IOException e2) {
+			System.out.println(USER_CURRENCY_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 	} // end of addCurrency
 } // end of QuestBoard class

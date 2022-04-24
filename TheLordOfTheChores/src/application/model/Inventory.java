@@ -1,3 +1,9 @@
+/**
+ * Author: Isaac Nguyen (rrg053)
+ * File: Inventory.java
+ * Purpose: Inventory functions
+ */
+
 package application.model;
 
 import java.io.File;
@@ -9,90 +15,98 @@ import java.util.HashMap;
 import java.util.Properties;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-/**
- * Author: Isaac Nguyen (rrg053)
- * File: Inventory.java
- * Purpose: Inventory functions
- */
 
 //Inventory class to see what equipment user has in their inventory and be able to equip them
 public class Inventory {
-	//properties files to store and retrieve user information
+	private HashMap<String, String> inventory = new HashMap<>();
+	private Properties properties = new Properties();
+	
+	// -------------- FILE NAMES -------------- //
 	private static final String CURRENT_USER_FILE_NAME = "currentUser.properties";
-	private static final File CURRENT_USER_FILE_OBJECT = new File(CURRENT_USER_FILE_NAME);
 	private final static String INVENTORY_FILE_NAME = "inventory.properties";
-	private final static File INVENTORY_FILE_OBJECT = new File(INVENTORY_FILE_NAME);
 	private static final String USER_CURRENCY_FILE_NAME = "userCurrency.properties";
-	private static final File USER_CURRENCY_FILE_OBJECT = new File(USER_CURRENCY_FILE_NAME);
 	private static final String ITEMS_EQUIPPED_FILE_NAME = "itemsEquipped.properties";
+	
+	// -------------- FILE OBJECTS -------------- //
+	private static final File CURRENT_USER_FILE_OBJECT = new File(CURRENT_USER_FILE_NAME);
+	private final static File INVENTORY_FILE_OBJECT = new File(INVENTORY_FILE_NAME);
+	private static final File USER_CURRENCY_FILE_OBJECT = new File(USER_CURRENCY_FILE_NAME);
 	private static final File ITEMS_EQUIPPED_FILE_OBJECT = new File(ITEMS_EQUIPPED_FILE_NAME);
 	
-	//create properties variable for properties class
-	private Properties properties = new Properties();
-	//HashMap for inventory
-	private HashMap<String, String> inventory = new HashMap<>();
 	
 	//gets the the currency of the user
-	public int getCurrency(String username) throws FileNotFoundException, IOException {
+	public int getCurrency(String username) {
 		properties.clear();
 		//load currency properties file
 		try(FileInputStream inFile = new FileInputStream(USER_CURRENCY_FILE_OBJECT)) {
 			properties.load(inFile);
+			inFile.close();
 		}
 		//FileNotFoundException catch
 		catch(FileNotFoundException e) {
 			System.out.println(USER_CURRENCY_FILE_NAME + ": file not found");
+			e.printStackTrace();
 		}
+		catch(IOException e2) {
+			System.out.println(USER_CURRENCY_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
+		}
+		
 		//return value 
 		return Integer.parseInt((String) properties.get(username));
 	}
 	
 	//gets the current user 
-	public String getCurrentUser() throws FileNotFoundException, IOException {
+	public String getCurrentUser() {
 		properties.clear(); // clear properties
+		
 		//load current user file
 		try(FileInputStream inFile = new FileInputStream(CURRENT_USER_FILE_OBJECT)) {
 			properties.load(inFile);
+			inFile.close();
 		}
+		
 		//FileNotFoundException catch
 		catch(FileNotFoundException e) {
 			System.out.println(CURRENT_USER_FILE_NAME + ": file not found");
+			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(CURRENT_USER_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 		
 		//get user
 		for(String keys : properties.stringPropertyNames()) {
 			return keys;
 		}
+		
 		//otherwise return error
 		return "ERROR";
 	}
+	
 	//updated currency value
 	public void updateCurrency(Label currencyLabel) {
-		
-		try {
-			String username = getCurrentUser();//get the current user 
-			String currency = String.valueOf(getCurrency(username));//get current currency value
-			currencyLabel.setText(currency);//set new value to screen
-		//catch File not found exception
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		// catch IO exception
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String username = getCurrentUser();//get the current user 
+		String currency = String.valueOf(getCurrency(username));//get current currency value
+		currencyLabel.setText(currency);//set new value to screen
 	}
+	
 	//get Inventory items stored in inventory properties file
-	public void getInventory(ListView<String> helmetList, ListView<String> chestList, ListView<String> gauntList, ListView<String> legList, ListView<String> bootList) throws FileNotFoundException, IOException {
+	public void getInventory(ListView<String> helmetList, ListView<String> chestList, ListView<String> gauntList, ListView<String> legList, ListView<String> bootList) {
 		properties.clear(); // clear properties
-		
 		String user = getCurrentUser();//gets the current user
+		
 		//load inventory file
 		try(FileInputStream inFile = new FileInputStream(INVENTORY_FILE_OBJECT)) {
 			properties.load(inFile);
+			inFile.close();
+			
 			// add users name and inventory to HashMap
 			for(String keys : properties.stringPropertyNames()) {
 				inventory.put(keys, properties.get(keys).toString());
 			}
+			
 			String inv = inventory.get(user);// create inventory string to for user inventory
 			String split[] = inv.split(",");//split each item by the comma separating them
 			//go through each item and place them in their respective List
@@ -118,21 +132,29 @@ public class Inventory {
 					bootList.getItems().add(split[i]);
 				}
 			}
+			
 			//close file
 			inFile.close();
 		}
+		
 		//File not found exception catch
 		catch(FileNotFoundException e) {
 			System.out.println(INVENTORY_FILE_NAME + ": file not found");
+			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(INVENTORY_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 		
 	}
-	// equip items selected by user
-	public void equipItem(String helmet,String chest,String gaunt,String leg,String boot)  throws IOException{
-		properties.clear(); // clear properties
-		
+	
+	//equip items selected by user
+	public void equipItem(String helmet,String chest,String gaunt,String leg,String boot) {
+		properties.clear(); //clear properties
 		String user = getCurrentUser();	//get current user
 		String equipment;	//variable to hold string of all item
+		
 		//if helmet not selected do not equip
 		if( helmet == null) {
 			helmet = "NONE";
@@ -153,8 +175,10 @@ public class Inventory {
 		if( boot == null) {
 			boot = "NONE";
 		}
+		
 		//add all equip items to one string with comma separators
 		equipment = helmet + "," + chest + "," + gaunt + "," + leg + "," + boot ;
+		
 		// load equipped items file
 		try(FileInputStream inFile = new FileInputStream(ITEMS_EQUIPPED_FILE_OBJECT)) {
 			properties.load(inFile); // Load file data	
@@ -162,7 +186,12 @@ public class Inventory {
 		}
 		//File not found exception catch
 		catch(FileNotFoundException e) {
-			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": File does not exist");
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": file does not exist");
+			e.printStackTrace();
+		}
+		catch(IOException e2) {
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 		
 		properties.put(user,equipment); // Store equipment into hash map
@@ -171,11 +200,13 @@ public class Inventory {
 		try(FileOutputStream outFile = new FileOutputStream(ITEMS_EQUIPPED_FILE_OBJECT, false)) {
 			properties.store(outFile, null); // Store info in properties file
 			outFile.close();	//close file
-		//File not found exception catch
 		} catch (FileNotFoundException e) {
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": file does not exist");
 			e.printStackTrace();
 		}
+		catch(IOException e2) {
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
+		}
 	}
-
-
 }

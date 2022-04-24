@@ -28,8 +28,8 @@ public class ShopController implements Initializable {
 	
 	Alert a = new Alert(null);
 	private Shop shopModel = new Shop();
-	@FXML private AnchorPane shopPane;	//pane
-	@FXML private AnchorPane mainPane;	//pane
+	@FXML private AnchorPane shopPane;
+	@FXML private AnchorPane mainPane;
 	@FXML private Label currencyLabel;
 	
 	
@@ -71,7 +71,6 @@ public class ShopController implements Initializable {
 				+ "Step 3: Equip the cool looking gear you just bought in the inventory screen."
 				+ "\n\nAnd that's it! See you around adventurer!");
 		a.showAndWait();
-    	
     }
     
     /**
@@ -81,7 +80,7 @@ public class ShopController implements Initializable {
      * @throws IOException
      */
     @FXML
-    void buyKnightChestpieceHandle(MouseEvent event) throws IOException {
+    void buyKnightChestpieceHandle(MouseEvent event) {
     	shopModel.buyKnightChestpiece(currencyLabel);
     }
     
@@ -93,7 +92,7 @@ public class ShopController implements Initializable {
      * @throws IOException
      */
     @FXML
-    void buyKnightBootsHandle(MouseEvent event) throws FileNotFoundException, IOException {
+    void buyKnightBootsHandle(MouseEvent event) {
     	shopModel.buyKnightBoots(currencyLabel);
     }
     
@@ -105,7 +104,7 @@ public class ShopController implements Initializable {
      * @throws IOException
      */
     @FXML
-    void buyKnightHelmetHandle(MouseEvent event) throws FileNotFoundException, IOException {
+    void buyKnightHelmetHandle(MouseEvent event) {
     	shopModel.buyKnightHelmet(currencyLabel);
     }
     
@@ -117,7 +116,7 @@ public class ShopController implements Initializable {
      * @throws IOException
      */
     @FXML
-    void buyKnightLeggingsHandle(MouseEvent event) throws FileNotFoundException, IOException {
+    void buyKnightLeggingsHandle(MouseEvent event) {
     	shopModel.buyKnightLeggings(currencyLabel);
     }
     
@@ -129,7 +128,7 @@ public class ShopController implements Initializable {
      * @throws IOException
      */
     @FXML
-    void buyMercenaryChestpieceHandle(MouseEvent event) throws FileNotFoundException, IOException {
+    void buyMercenaryChestpieceHandle(MouseEvent event) {
     	shopModel.buyMercenaryChestpiece(currencyLabel);
     }
     
@@ -141,7 +140,7 @@ public class ShopController implements Initializable {
      * @throws IOException
      */
     @FXML
-    void buySpartanHelmetHandle(MouseEvent event) throws FileNotFoundException, IOException {
+    void buySpartanHelmetHandle(MouseEvent event) {
     	shopModel.buySpartanHelmet(currencyLabel);
     }
     
@@ -153,7 +152,7 @@ public class ShopController implements Initializable {
      * @throws IOException
      */
     @FXML
-    void buyKnightGauntletsHandle(MouseEvent event) throws FileNotFoundException, IOException {
+    void buyKnightGauntletsHandle(MouseEvent event) {
     	shopModel.buyKnightGauntlets(currencyLabel);
     }
     

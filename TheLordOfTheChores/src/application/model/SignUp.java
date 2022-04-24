@@ -18,20 +18,21 @@ import javafx.scene.control.Label;
 
 public class SignUp {
 	private HashMap<String, String> userPassHashMap = new HashMap<String,String>();
-	//private HashMap<String, String> currentUser = new HashMap<String, String>();
-	//private static HashMap<String, String> inventory = new HashMap<String, String>();
 	private static Properties properties = new Properties();
-	//private static Properties properties2 = new Properties();
 	
-	// -------------- FILE STUFF -------------- //
+	// -------------- FILE NAMES -------------- //
 	private static final String USER_PASSWORD_FILE_NAME = "userPassword.properties";
 	private static final String ITEMS_EQUIPPED_FILE_NAME = "itemsEquipped.properties";
 	private static final String USER_CURRENCY_FILE_NAME = "userCurrency.properties";
 	private static final String INVENTORY_FILE_NAME = "inventory.properties";
+	
+	// -------------- FILE OBJECTS -------------- //
 	private static final File INVENTORY_FILE_OBJECT = new File(INVENTORY_FILE_NAME);
 	private static final File USER_PASSWORD_FILE_OBJECT = new File(USER_PASSWORD_FILE_NAME);
 	private static final File ITEMS_EQUIPPED_FILE_OBJECT = new File(ITEMS_EQUIPPED_FILE_NAME);
 	private static final File USER_CURRENCY_FILE_OBJECT = new File(USER_CURRENCY_FILE_NAME);
+	
+	// -------------- STARTER ITEMS -------------- //
 	private static final String STARTER_KIT = "NONE,StarterChestArmor v2,NONE,StarterLeggings v2,NONE";
 	private static final String STARTER_INVENTORY = "StarterChestArmor v2,StarterLeggings v2";
 	
@@ -42,7 +43,7 @@ public class SignUp {
 	 * 
 	 * @throws IOException
 	 */
-	public boolean loadSignUp(String username, String password, String confirmPassword, Label invalidTextBox) throws IOException {
+	public boolean loadSignUp(String username, String password, String confirmPassword, Label invalidTextBox) {
 		// null/empty check
 		if( 	username == null || username.isEmpty() || 
 				password == null || password.isEmpty() || 
@@ -53,6 +54,7 @@ public class SignUp {
 		
 		try(FileInputStream inFile = new FileInputStream(USER_PASSWORD_FILE_OBJECT)) {
 			properties.load(inFile);
+			inFile.close();
 			
 			// Put objects from properties file into a locally created HashMap
 			for(String keys : properties.stringPropertyNames()) {
@@ -61,6 +63,10 @@ public class SignUp {
 		}
 		catch(FileNotFoundException e) {
 			System.out.println(USER_PASSWORD_FILE_NAME + ": file does not exist");
+		}
+		catch(IOException e2) {
+			System.out.println(USER_PASSWORD_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 		
 		// Validate Credentials
@@ -88,21 +94,20 @@ public class SignUp {
 	 * 
 	 * @param username
 	 * @param password
-	 * @throws IOException
 	 */
-	private void initializeCredentials(String username, String password) throws IOException {
-		// load password file
+	private void initializeCredentials(String username, String password) {
+		
 		try(FileOutputStream outFile = new FileOutputStream(USER_PASSWORD_FILE_OBJECT, false)) {
-			//put username and password in has map
 			userPassHashMap.put(username, password);
-			//put hash map in properties file
 			properties.putAll(userPassHashMap);
-			//store in properties file
 			properties.store(outFile, null);
-			//close file
 			outFile.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println(USER_PASSWORD_FILE_NAME + ": file not found");
+		}
+		catch(IOException e2) {
+			System.out.println(USER_PASSWORD_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 	}
 	
@@ -110,9 +115,8 @@ public class SignUp {
 	 * initializes currency in the file "userCurrency.properties"
 	 * 
 	 * @param username
-	 * @throws IOException
 	 */
-	private void initializeCurrency(String username) throws IOException {
+	private void initializeCurrency(String username) {
 		properties.clear(); // Starts from scratch
 		
 		try(FileInputStream inFile = new FileInputStream(USER_CURRENCY_FILE_OBJECT)) {
@@ -122,14 +126,22 @@ public class SignUp {
 		catch(FileNotFoundException e) {
 			System.out.println(USER_CURRENCY_FILE_NAME + ": file does not exist");
 		}
+		catch(IOException e2) {
+			System.out.println(USER_CURRENCY_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
+		}
 		
 		properties.put(username, "0"); // put username into hashmap and initialize it to 0
 		
 		try(FileOutputStream outFile = new FileOutputStream(USER_CURRENCY_FILE_OBJECT, false)) {
 			properties.store(outFile, null); // Store the hashmap into the userCurrency.properties file
 			outFile.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		} catch(FileNotFoundException e) {
+			System.out.println(USER_CURRENCY_FILE_NAME + ": file not found");
+		}
+		catch(IOException e2) {
+			System.out.println(USER_CURRENCY_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 	}
 
@@ -139,14 +151,18 @@ public class SignUp {
 	 * @param username
 	 * @throws IOException
 	 */
-	public static void initializeStarterGear(String username) throws IOException {
+	public static void initializeStarterGear(String username) {
 		properties.clear(); // Starts from scratch
 		
 		try(FileInputStream inFile = new FileInputStream(ITEMS_EQUIPPED_FILE_OBJECT)) {
 			properties.load(inFile); // Load file data	
+			inFile.close();
 		}
 		catch(FileNotFoundException e) {
-			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": File does not exist");
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": file does not exist");
+		}
+		catch(IOException e2) {
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": io exception found");
 		}
 		
 		properties.put(username, STARTER_KIT); // Store armor into hashmap
@@ -155,7 +171,11 @@ public class SignUp {
 			properties.store(outFile, null); // Store in properties file
 			outFile.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": file not found");
+		}
+		catch(IOException e2) {
+			System.out.println(ITEMS_EQUIPPED_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 	}
 	
@@ -165,14 +185,19 @@ public class SignUp {
 	 * @param username
 	 * @throws IOException
 	 */
-	public static void initializeInventory(String username) throws IOException {
+	public static void initializeInventory(String username) {
 		properties.clear(); // Starts from scratch
 		
 		try(FileInputStream inFile = new FileInputStream(INVENTORY_FILE_OBJECT)) {
 			properties.load(inFile); // Load file data	
+			inFile.close();
 		}
 		catch(FileNotFoundException e) {
-			System.out.println(INVENTORY_FILE_OBJECT + ": File does not exist");
+			System.out.println(INVENTORY_FILE_NAME + ": file does not exist");
+		}
+		catch(IOException e2) {
+			System.out.println(INVENTORY_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 		
 		properties.put(username, STARTER_INVENTORY); // Store armor into hashmap
@@ -181,7 +206,11 @@ public class SignUp {
 			properties.store(outFile, null); // Store in properties file
 			outFile.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println(INVENTORY_FILE_NAME + ": file not found");
+		}
+		catch(IOException e2) {
+			System.out.println(INVENTORY_FILE_NAME + ": io exception found");
+			e2.printStackTrace();
 		}
 	}
 }
