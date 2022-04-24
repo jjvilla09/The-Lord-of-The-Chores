@@ -7,7 +7,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -68,15 +67,10 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Circle fill="#6b6b6b" layoutX="568.0" layoutY="289.0" radius="69.0" stroke="BLACK" strokeType="INSIDE" />
-      <Line endX="53.0" endY="-55.0" layoutX="515.0" layoutY="413.0" startX="53.0" startY="83.0" />
-      <Line endX="70.0" layoutX="530.0" layoutY="421.0" startX="5.0" />
-      <Line endX="47.5" endY="-39.5" layoutX="521.0" layoutY="536.0" startX="30.0" />
-      <Line endX="-77.0" endY="-28.0" layoutX="659.0" layoutY="563.0" startX="-91.0" startY="-66.0" />
-      <ImageView fx:id="helmetIM" fitHeight="153.0" fitWidth="167.0" layoutX="484.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="chestIM" fitHeight="105.0" fitWidth="117.0" layoutX="509.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="legsIM" fitHeight="105.0" fitWidth="117.0" layoutX="510.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="bootsIM" fitHeight="105.0" fitWidth="117.0" layoutX="510.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="gauntletsIM" fitHeight="105.0" fitWidth="117.0" layoutX="509.0" layoutY="369.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="chestIM" fitHeight="207.0" fitWidth="208.0" layoutX="506.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="helmetIM" fitHeight="180.0" fitWidth="180.0" layoutX="520.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="legsIM" fitHeight="293.0" fitWidth="172.0" layoutX="524.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="bootsIM" fitHeight="199.0" fitWidth="269.0" layoutX="512.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="gauntletsIM" fitHeight="237.0" fitWidth="314.0" layoutX="489.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

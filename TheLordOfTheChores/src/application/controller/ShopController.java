@@ -153,8 +153,8 @@ public class ShopController implements Initializable {
      * @throws IOException
      */
     @FXML
-    void buySpartanHelmetHandle(MouseEvent event) throws FileNotFoundException, IOException {
-    	shopModel.buySpartanHelmet(currencyLabel);
+    void buyKnightGauntletsHandle(MouseEvent event) throws FileNotFoundException, IOException {
+    	shopModel.buyKnightGauntlets(currencyLabel);
     }
     
     /**

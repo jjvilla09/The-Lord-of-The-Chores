@@ -90,15 +90,24 @@ public class QuestBoardController implements Initializable {
     void createNewQuest(ActionEvent event) {
     	if (event.getSource() == createNewQuestButton) {
     		System.out.println("createNewQuestButton pressed");
-    		if (questNameTF.getText().isEmpty() || diffChoice.getValue().isEmpty()) {
+    		try {
+	    		if (questNameTF.getText().isEmpty() || diffChoice.getValue().isEmpty()) {
+	    			a.setAlertType(AlertType.ERROR);
+	    			a.setContentText("ERROR: One of the two fields isn't complete. Please fill in all "
+	    					+ "fields before creating the quest.");
+	    			a.showAndWait();
+	    		} else {
+	    			String[] v = { questNameTF.getText(), diffChoice.getValue() };
+	    			//QuestBoard qb = new QuestBoard();
+	    			questList.getItems().add(qb.createQuest(v));
+	    		}
+    		}
+    		catch(NullPointerException e) {
     			a.setAlertType(AlertType.ERROR);
     			a.setContentText("ERROR: One of the two fields isn't complete. Please fill in all "
     					+ "fields before creating the quest.");
     			a.showAndWait();
-    		} // end of nested if
-    		String[] v = { questNameTF.getText(), diffChoice.getValue() };
-    		//QuestBoard qb = new QuestBoard();
-    		questList.getItems().add(qb.createQuest(v));
+    		}
     	} // end of if
     } // end of createNewQuest method
     

@@ -332,6 +332,36 @@ public class Shop {
 	}
 	
 	/**
+	 * If the user is determined to have enough currency, then 
+	 * deduct 1000 currency, add SpartanHelmet to inventory, and update the 
+	 * top-left currency label seen by the user.
+	 * 
+	 * @param currencyLabel
+	 * @throws IOException
+	 */
+	public void buyKnightGauntlets(Label currencyLabel) throws IOException {
+		String username = getCurrentUser();
+		int currency = getCurrency(username);
+		
+		if(currency >= 100) {
+			a2.showAndWait();
+			ButtonType bt = a2.getResult();
+			
+			if(bt.equals(ButtonType.OK)) {
+				deductCurrency(username, 100);
+				addToInventory(username, ",CommonGauntlets v2");
+				updateCurrency(currencyLabel);
+			} else {
+				a.setContentText("Puchase Canceled");
+				a.showAndWait();
+			}
+		} else {
+			a.setContentText("Not enough currency");
+			a.showAndWait();
+		}
+	}
+	
+	/**
 	 * Updates the currency label by finding the user's old currency
 	 * and setting it to new currency.
 	 * 
